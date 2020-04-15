@@ -1,0 +1,2 @@
+create react app comes with all the configuration we need for sass
+to convert sass into css files, our browsers can only understand the css
