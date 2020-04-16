@@ -1,9 +1,13 @@
 import React from "react"
+import {withRouter} from "react-router-dom"  //higher order comp, takes comp as agguement and return a modified comp.
+
 
 import "./menu-item.styles.scss"
 
-const MenuItem = ({ title, imageUrl, size }) => (
-    <div className={`${size} menu-item`}>
+const MenuItem = ({ title, imageUrl, size, history, match, linkUrl }) => (
+    <div className={`${size} menu-item`}
+     onClick = {() => history.push(`${match.url}${linkUrl}`)}     
+     >
       <div
         className='background-image'
         style={{
@@ -18,8 +22,9 @@ const MenuItem = ({ title, imageUrl, size }) => (
     </div>
       </div>
     
-
+  
 )
 
 
-export default MenuItem
+//withRouter will return us super powered comp that has access to props like history, that otherwise possible only in homepage 
+export default withRouter(MenuItem)  
