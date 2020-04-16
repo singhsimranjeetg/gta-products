@@ -7,14 +7,14 @@
     justify-content: center;
     border: 1px solid black;
     margin: 0 7.5px 15px;
-    overflow: hidden;
+    overflow: hidden;   //menu item does not overflow
   
-    &:hover {
-      cursor: pointer;
+    &:hover {   
+      cursor: pointer;   //making cursor a finger 
   
       & .background-image {
-        transform: scale(1.1);
-        transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+        transform: scale(1.1);    //1.1 times the size of the image
+        transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);    //time is 6sc and cubic bezier smother transiton
       }
   
       & .content {
@@ -43,7 +43,7 @@
   
     .content {
       height: 90px;
-      padding: 0 25px;
+      padding: 0 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -52,6 +52,7 @@
       background-color: white;
       opacity: 0.7;
       position: absolute;
+      
   
       .title {
         font-weight: bold;

@@ -22,8 +22,8 @@ class Directory extends React.Component {
                   },
                   {
                     title: 't-shirts',
-                    imageUrl: 'https://i.ibb.co/g3DNrhd/t-shirt.jpg',
-                    id: 3,
+                    imageUrl: 'https://i.ibb.co/M2WC2cM/tshirt.jpg',
+                    id: 3, 
                     linkUrl: 'shop/t-shirts'
                   },
                   {
@@ -56,7 +56,7 @@ class Directory extends React.Component {
 
                   {
                     title: 'mens',
-                    imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
+                    imageUrl: 'https://i.ibb.co/g3DNrhd/t-shirt.jpg',
                     size: 'large',
                     id: 8,
                     linkUrl: 'shop/mens'
