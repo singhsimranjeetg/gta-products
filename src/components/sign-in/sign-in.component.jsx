@@ -2,6 +2,8 @@ import React from "react"
 import "./sign-in.styles.scss"
 import FormInput from "../form-input/form-input.component"
 import CustomButton from "../custom-button/custom-button.component"
+import {SignInWithGoogle} from "../../firebase/firebase.utils"
+
 
 class SignIn extends React.Component {
     constructor(props){
@@ -54,15 +56,19 @@ class SignIn extends React.Component {
                      handleChange = {this.handleChange}
                      label = "Password"
                       required />
-                    
-
+    
+                    <div className = "buttons">
                     <CustomButton type="submit" >SIGN IN
                         </CustomButton>
+                    <CustomButton onClick = {SignInWithGoogle} isGoogleSignIn  >SIGN IN WITH GOOGLE
+                        </CustomButton>
+                    </div>
+                    
                 </form>
             </div>
-        )
-    }
-}
+        )//used onClick mehtod to call signinwithgoogle fx from other folder
+    }  //used </CustomButton> bcz wanna use the children prop of that in custom button comp.
+}  //so by default isgooglesignin will pass the true value to the custom button
 
 
 export default SignIn

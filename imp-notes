@@ -2,16 +2,26 @@ create react app comes with all the configuration we need for sass
 to convert sass into css files, our browsers can only understand the css
 
 app.js - info for the routing for the pages components
+we can use any Oauth sign in with any provider, like twiter and google 
+then we have to go to firebase and enable the one we wanna allow it for
 
 
 all files 
 components
 1. directory - applies once for our homepage all menu items
 2. menu-item - applies once for our each menu item
-3. preview collection - - applies once for our all shop page items, only shows four on one page
+3. preview collection - - applies onces for our all shop page items, only shows four on one page
 4.item-collection - applies once for our each collection item
+5. header - applies once on whole header.
+6. signin - applies once on all input fields for signin comp. with FormInput comp
+7.signup- 
+8. form-input- applies once on each input field and this way we can create as many FormInput comp as possible
+
+
+
+
 
 pages
 1. homepage - responsible for showing homepage component on localhost 3000
 2. shop - responsible for showing all collection items on the /shop url
-3.
+3.signInAndSignUp - responsible for showing signin and sign up components 

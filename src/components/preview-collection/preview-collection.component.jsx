@@ -8,9 +8,7 @@ const PreviewCollection = ({ title, items}) => (
         <div className = "preview">  
             {  
 
-                items.                              //seen an error when (item,idx) was replaced by id
-                filter((item,idx) => idx < 4 )
-                .map(({id , ...otherItemProps}) => (
+                items.filter((item,idx) => idx < 4 ).map(({id , ...otherItemProps}) => (
                  <CollectionItem key = {id} {...otherItemProps} />
                  ))
 
