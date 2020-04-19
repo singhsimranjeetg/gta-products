@@ -3,7 +3,8 @@ import "./header.styles.scss"
 import {Link} from "react-router-dom"
 import {ReactComponent as Logo} from "../../assets/crown.svg"
 import {auth} from "../../firebase/firebase.utils"
-  
+import {connect} from "react-redux"
+   
 const Header = ({currentUser}) => (
     <div className = "header">
         <Link to = "/" className = "logo-container"> 
@@ -30,4 +31,11 @@ const Header = ({currentUser}) => (
     </div>
 )
 
-export default Header
+const mapSateToProps = state => ({    //state is the root reducer obj, top level and below we will set a property.
+    currentUser: state.user.currentUser  //we are pointing to root reducer,then user reducer, then currentuser propp
+    
+})
+
+export default connect(mapSateToProps)(Header)    //that null value set in the user reduccer will be passed in this 
+
+//connect is also a higher oder comp. which get two arguements

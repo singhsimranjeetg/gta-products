@@ -8,5 +8,5 @@ const middlewares = [logger] //we might pass only the logger to the applymiddle 
 
 const store = createStore(rootReducer, applyMiddleware(...middlewares))
 
-export default store
+export default store  //we will pass this to the provider in the index.js file.
  

@@ -1,27 +1,29 @@
 import React from 'react';
 import HomePage from "./pages/homepage/homepage.component"
 import './App.css';
-import {Switch, Route} from "react-router-dom";
+import {Switch, Route, Redirect} from "react-router-dom";
 import ShopPage from "./pages/shop/shop.component"
 import Header from  "./components/header/header.component"
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component"
 import {auth, createUserProfileDocument} from "./firebase/firebase.utils"
-
+import {connect} from "react-redux"
+import {setCurrentUser} from "./redux/user/users.actions"
 
 class App extends React.Component { 
-  constructor(){
+  /*constructor(){
     super()
 
     this.state = {
       currentUser: null
     }
-
-  }
+we dont need the constructor bcz we are passing the state as user obj to the reducer
+  }*/ 
 
     unSubscribeFromAuth = null
 
 
    componentDidMount(){   //telling to whenever a auth change, update the state of app comp
+    const {setCurrentUser} = this.props
     this.unSubscribeFromAuth = auth.onAuthStateChanged(async UsersAuth => {     //this UserAuth objects that get passed to createuserprofile fx in the firebase utils
      //console.log(UsersAuth) // this userAuth returns null if sign out and if sign in returns an auth object with display name email etc.
        if(UsersAuth){
@@ -29,18 +31,18 @@ class App extends React.Component {
 
        userRef.onSnapshot(snapShot => {
         //console.log(snapShot.data()) this returns the collections obj(like display name) for that particualar user doc, but snapshot just rerurn the obj
-         this.setState({
-           currentUser: {
+         setCurrentUser({
            id: snapShot.id,
            ...snapShot.data()
-         }})
-         console.log(this.state.currentUser)
+           
+         })
+  //console.log(setCurrentUser(UsersAuth)) this will start an action type as set current user and payload as big userAuth obj that has all the prop of signed in user
       })
       
 
        }
        else {
-         this.setState({currentUser: UsersAuth})  //this will set currentuser to null if there is not Userauth, means no user signed in
+         setCurrentUser(UsersAuth)  //this will set currentuser to null if there is not Userauth, means no user signed in
        }
     
        
@@ -52,25 +54,36 @@ class App extends React.Component {
    render() {
     // doesnt work-  const {currentUser} = this.state    <h2>Welcome to {this.state.currentUser.DisplayNam}</h2>
    return (  
-   
+   //using reducer to pass the props in the header comp
     <div className="App">
-      <Header currentUser = {this.state.currentUser}  />
+      <Header  />     
+    
       <h4>GTA-PRODUCTS</h4>
-      
+    
       <Switch>
       <Route exact  path = "/" component = {HomePage}  />
      <Route path = "/shop" component = {ShopPage} />
-     <Route path = "/signin" component = {SignInAndSignUpPage} />
+     <Route exact path = "/signin" render = {() =>
+       this.props.currentUser ? (<Redirect to = "/"/>) 
+       : (<SignInAndSignUpPage />) }/>
       </Switch>
       
     </div>
   );  
 }  
 }
+    //we are passing a user obj to the setscuurent user action, dispatch is a way for redux to know whatever obj we are passing
+  //will be a action obj and will be passed to all the reducers.
+  //the setcurrent user is a fx and we are passsing a obj as a arguement which will be the payload for that.
+const mapStateToProps = ({user}) => ({
+  currentUser: user.currentUser
+})
 
-
-
-export default App;
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))    
+})
+ 
+export default connect(mapStateToProps, mapDispatchToProps )(App)    //first arguement is null bcz we dont need the currentuser prop here in the app comp
 
 
 
@@ -80,3 +93,8 @@ export default App;
   //the auth method of firebase keeps the user logged in untill they sign out,
      //unlike express app which required the use of sessions to do so  
      //async fx for createUser bcz its waiting for a query from the db
+
+     //logger tells us the state of the our redux when any action gets fired
+     //the prev state is the state before action was fired and second is the 
+     //action itself and third is the state after the action has modified 
+     //any of our reducers
