@@ -39,3 +39,20 @@ redux
 4.users-action - stores the action for the userReducer and states its type and payload.
 
 
+
+
+How the cart reducer work - 
+for the cart icon in the cart-icon.comp we use mapdispatchtoprops that takes that action onclick on the cart-icon and pass the actions
+of togglehidden to the cart reducer. in the header comp we use mapStatetoprops to get those props off the state and 
+pass them to cart-dropdown and sign-in components.
+
+
+
+
+super important concepts
+once the state gets fired by any component, it re renders the whole state from the root reducer.
+
+
+
+
+

@@ -4,8 +4,11 @@ import {Link} from "react-router-dom"
 import {ReactComponent as Logo} from "../../assets/crown.svg"
 import {auth} from "../../firebase/firebase.utils"
 import {connect} from "react-redux"
+import CartIcon from "../cart-icon/cart-icon.component"
+import CartDropdown from "../cart-dropdown/cart-dropdown.component"
+
    
-const Header = ({currentUser}) => (
+const Header = ({currentUser , hidden}) => (
     <div className = "header">
         <Link to = "/" className = "logo-container"> 
          <Logo className = "logo" />
@@ -24,15 +27,18 @@ const Header = ({currentUser}) => (
                 <div className = "option" onClick = {() => auth.signOut()}>SIGN OUT</div>)
 
                 :( <Link className = "option" to = "/signin">SIGN IN</Link>)
-
-
             }
+            <CartIcon />
         </div>
+        {
+          hidden ? null : <CartDropdown />
+        }
     </div>
-)
-
-const mapSateToProps = state => ({    //state is the root reducer obj, top level and below we will set a property.
-    currentUser: state.user.currentUser  //we are pointing to root reducer,then user reducer, then currentuser propp
+) //means if hidden is true, dont show anything, but if fasle show the cartdropf=down
+//advance way to destructure, means form our parent state we need currentuser from user obj and hidden from the cart
+const mapSateToProps = ({user: {currentUser}, cart: {hidden}}) => ({    //state is the root reducer obj, top level and below we will set a property.
+    currentUser,
+    hidden  //we are pointing to root reducer,then user reducer, then currentuser propp
     
 })
 
