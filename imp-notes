@@ -10,12 +10,14 @@ all files
 components
 1. directory - applies once for our homepage all menu items
 2. menu-item - applies once for our each menu item
-3. preview collection - - applies onces for our all shop page items, only shows four on one page
+3. preview collection - - applies onces for our all shop page items, only shows four four one type of item
 4.item-collection - applies once for our each collection item
 5. header - applies once on whole header.
 6. signin - applies once on all input fields for signin comp. with FormInput comp
-7.signup- 
-8. form-input- applies once on each input field and this way we can create as many FormInput comp as possible
+7.signup-applies once on all the input fields for signup comp. with forminput
+8. form-input- applies once on each input field and this way we can create as many FormInput comp as possible 
+9. custom button - applies once on each button. 
+
 
 
 
@@ -25,3 +27,15 @@ pages
 1. homepage - responsible for showing homepage component on localhost 3000
 2. shop - responsible for showing all collection items on the /shop url
 3.signInAndSignUp - responsible for showing signin and sign up components 
+ 
+firebase.utils 
+contains all the info for the firestore db and auth, authentication 
+
+redux
+1.root-reducer = contains all the child reducers
+2.store = creates a store with root reducer and middleware
+
+3.user-reducer = stores the userreducer function with switch and case 
+4.users-action - stores the action for the userReducer and states its type and payload.
+
+

@@ -1,3 +1,4 @@
 yarn add node-sass -for using sass
 yarn add react-router-dom  - for using routing
 yarn add firebase
+yarn add redux redux-logger react-redux
