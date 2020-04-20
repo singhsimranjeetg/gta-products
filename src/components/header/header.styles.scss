@@ -3,12 +3,14 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 25px;
-  //margin bottom push content 25 px down from the header
+    margin-bottom: 25px;       //margin bottom push content 25 px down from the header
+    background-color: #1fad66;  //added by me
+
+
     .logo-container {
       height: 100%;
       width: 70px;
-      padding: 25px;
+      padding: 15px;
     }
   
     .options {
@@ -17,10 +19,18 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
+      margin-right: 15px;
   //flex end means they are the right side of the screen
       .option {
         padding: 10px 15px;
         cursor: pointer;
+
+        &:hover {
+         // background-color: #f2f2f2;
+          font-weight: bold;
+          color : white;   //added by me all styles
+          transition: all .3s;
+        }
       }
     }
   }
