@@ -5,6 +5,7 @@ import {connect} from "react-redux" //we need this for using reducers
 import {toggleCartHidden} from "../../redux/cart/cart.actions"
 
 const CartIcon = ({toggleCartHidden, cartItems}) => (
+    
     <div className = "cart-icon" onClick = {toggleCartHidden}>
         <ShoppingIcon className = "shopping-icon" />
         <span className = "item-count">{cartItems.length}</span>
@@ -18,6 +19,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = ({cart : {cartItems}}) => ({
     cartItems
+    
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (CartIcon)
