@@ -1,28 +1,42 @@
 import React from "react"
 import "./cart-dropdown.styles.scss"
 import {connect} from "react-redux"
+import {Link} from "react-router-dom"
 
 import CustomButton from "../custom-button/custom-button.component"
 import CartItem from "../cart-item/cart-item.component"
 import {selectCartItems} from "../../redux/cart/cart.selector"
+import {createStructuredSelector} from "reselect"
+import {withRouter} from "react-router-dom"
 
-const CartDropdown = ({cartItems}) => (
+const CartDropdown = ({cartItems, history}) => (
     <div className = "cart-dropdown">
         <div className = "cart-items">
-            {cartItems.map(cartItem => (
+            {
+             cartItems.length ? 
+                cartItems.map(cartItem => (
               <CartItem key = {cartItem.id} item = {cartItem} />
-            ) )}
-            
+            ) ) 
+            : <span className = 'empty-cart'>Your cart is empty</span>
+                }
             </div>
-           <CustomButton>GO TO CHECKOUT</CustomButton>
+            <CustomButton onClick = {() => history.push("/checkout")} >Go to checkout</CustomButton>
+           
+           
+           
         
     </div>
 )
  //used mapStatetoprops bcz we need the sate here.
-const mapStateToProps = (state) =>  ({   //using selector for this
-    cartItems: selectCartItems(state)
+const mapStateToProps = createStructuredSelector({   //using selector for this
+    cartItems: selectCartItems
 
 })
 
 
-export default connect(mapStateToProps, null)(CartDropdown)
+export default withRouter(connect(mapStateToProps, null)(CartDropdown))
+
+/* one way for checkout page routing
+<CustomButton >
+           <Link to = "/checkout">GO TO CHECKOUT</Link>
+           </CustomButton>*/

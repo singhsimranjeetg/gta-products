@@ -3,11 +3,15 @@ import HomePage from "./pages/homepage/homepage.component"
 import './App.css';
 import {Switch, Route, Redirect} from "react-router-dom";
 import ShopPage from "./pages/shop/shop.component"
+
 import Header from  "./components/header/header.component"
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component"
 import {auth, createUserProfileDocument} from "./firebase/firebase.utils"
 import {connect} from "react-redux"
 import {setCurrentUser} from "./redux/user/users.actions"
+import {selectCurrentUser} from "./redux/user/user.selectors"
+import {createStructuredSelector} from "reselect"
+import { CheckoutPage } from './pages/checkoutPage/checkoutPage.component';
 
 class App extends React.Component { 
   /*constructor(){
@@ -63,6 +67,7 @@ we dont need the constructor bcz we are passing the state as user obj to the red
       <Switch>
       <Route exact  path = "/" component = {HomePage}  />
      <Route path = "/shop" component = {ShopPage} />
+     <Route path = "/checkout" component = {CheckoutPage} />
      <Route exact path = "/signin" render = {() =>
        this.props.currentUser ? (<Redirect to = "/"/>) 
        : (<SignInAndSignUpPage />) }/>
@@ -75,9 +80,11 @@ we dont need the constructor bcz we are passing the state as user obj to the red
     //we are passing a user obj to the setscuurent user action, dispatch is a way for redux to know whatever obj we are passing
   //will be a action obj and will be passed to all the reducers.
   //the setcurrent user is a fx and we are passsing a obj as a arguement which will be the payload for that.
-const mapStateToProps = ({user}) => ({
-  currentUser: user.currentUser
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
+
 })
+  
 
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))    
