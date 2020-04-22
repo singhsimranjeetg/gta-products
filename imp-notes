@@ -51,6 +51,19 @@ pass them to cart-dropdown and sign-in components.
 
 super important concepts
 once the state gets fired by any component, it re renders the whole state from the root reducer.
+every time when any action happens on the state, all the mapSatetoprops functions gets called again.
+
+Memoization -  for Example we clicked on the sign in button, the set_current_user action gets callled 
+and due to how redux works, at every action it gives us a brand new state which means a brand new state object,
+when the action happens , all the mapSatetoprops get called for all other action too,like cart icon or cart dropdown,
+and when a mapSatetoprops gets called it passes a new object or value to the comp, due to that our comp gets re render 
+again, it affects our performance and slow the speed. 
+
+we use redux -reselect library to avoid this, it actually figres out if that action affects the specific reducer, obj or not and
+does not call the mapSatetoprops for other comp , so the obj value for that comp remain same, that why react know not to render that comp again.
+
+
+
 
 
 
