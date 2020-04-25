@@ -1,4 +1,6 @@
 yarn add node-sass -for using sass
 yarn add react-router-dom  - for using routing
 yarn add firebase
-yarn add redux redux-logger react-redux
+yarn add redux redux-logger react-redux redux for state managment and logger for showing the actions on console
+yarn add reselect for maptostateprops 
+yarn add redux-persist for local storage of our cart items

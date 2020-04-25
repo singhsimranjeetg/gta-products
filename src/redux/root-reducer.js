@@ -4,10 +4,19 @@
 import {combineReducers} from "redux" //combinereducers is a function that we need to collect all reducers here.
 import userReducer from "./user/user-reducer"
 import cartReducer from "./cart/cart.reducer"
+import {persistReducer} from "redux-persist"
+import storage from "redux-persist/lib/storage" //telling it to use local storage
 
-export default combineReducers({
+const persistConfig = {
+    key: "root",
+    storage,
+    whitelist: ["cart"] //here we can provide all the reducers we wanna persist or store.
+}
+
+const rootReducer = combineReducers({
     user: userReducer,
     cart: cartReducer
 })
-//so the combine reducer is that parent obj of all other reducers and it stores the final state of the app
+
+export default persistReducer(persistConfig, rootReducer)
 
