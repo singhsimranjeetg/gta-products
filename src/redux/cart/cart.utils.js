@@ -1,3 +1,5 @@
+
+
 export const addItemsToCart = (cartItems, cartItemsToAdd) => {    //gonaa look in cart items array to see if cartItemstoadd already exists
 //cartItem to add is our actoin payload for the cart rreducer
     const existingCartItems = cartItems.find(     //it will return the first cartItems whose id matches the id of cartitem we wanna add
@@ -16,3 +18,25 @@ export const addItemsToCart = (cartItems, cartItemsToAdd) => {    //gonaa look i
     return [...cartItems, {...cartItemsToAdd, quantity: 1}]  //i think we are setting the quantity prop of cartItems to 1
 
 }
+
+ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
+    const existingCartItem = cartItems.find( cartItem => 
+     cartItem.id === cartItemToRemove.id)  //will return which are already in cart
+
+     //dont want to remove item if with left arrow 
+/*
+if(existingCartItem.quantity === 1){
+    return cartItems.filter(cartItem => cartItem.id !== cartItemToRemove.id)
+}*/   
+
+if(existingCartItem.quantity === 1){    //
+    return cartItems.map(cartItem => cartItem)
+}
+
+return cartItems.map(cartItem =>
+    cartItem.id ===cartItemToRemove.id 
+    ? {...cartItem, quantity: cartItem.quantity -1}
+    : cartItem
+)
+}
+
