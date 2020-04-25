@@ -3,6 +3,7 @@ import HomePage from "./pages/homepage/homepage.component"
 import './App.css';
 import {Switch, Route, Redirect} from "react-router-dom";
 import ShopPage from "./pages/shop/shop.component"
+import Checkout from "./pages/checkout/checkoutpage/checkout.component"
 
 import Header from  "./components/header/header.component"
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component"
@@ -11,7 +12,7 @@ import {connect} from "react-redux"
 import {setCurrentUser} from "./redux/user/users.actions"
 import {selectCurrentUser} from "./redux/user/user.selectors"
 import {createStructuredSelector} from "reselect"
-import { CheckoutPage } from './pages/checkoutPage/checkoutPage.component';
+
 
 class App extends React.Component { 
   /*constructor(){
@@ -62,12 +63,13 @@ we dont need the constructor bcz we are passing the state as user obj to the red
     <div className="App">
       <Header  />     
     
-      <h4>GTA-PRODUCTS</h4>
+      <h4>GTA PRODUCTS </h4>
     
       <Switch>
+      <Route  path = "/checkout" component = {Checkout} />
       <Route exact  path = "/" component = {HomePage}  />
      <Route path = "/shop" component = {ShopPage} />
-     <Route path = "/checkout" component = {CheckoutPage} />
+     
      <Route exact path = "/signin" render = {() =>
        this.props.currentUser ? (<Redirect to = "/"/>) 
        : (<SignInAndSignUpPage />) }/>

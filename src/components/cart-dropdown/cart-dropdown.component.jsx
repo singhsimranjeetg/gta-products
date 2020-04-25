@@ -1,15 +1,17 @@
 import React from "react"
 import "./cart-dropdown.styles.scss"
 import {connect} from "react-redux"
-import {Link} from "react-router-dom"
+
 
 import CustomButton from "../custom-button/custom-button.component"
 import CartItem from "../cart-item/cart-item.component"
 import {selectCartItems} from "../../redux/cart/cart.selector"
 import {createStructuredSelector} from "reselect"
 import {withRouter} from "react-router-dom"
+import { toggleCartHidden } from "../../redux/cart/cart.actions"
 
-const CartDropdown = ({cartItems, history}) => (
+const CartDropdown = ({cartItems, history, dispatch}) => (   //with mapsatetoprops we have access to dispatch method.
+                                                            //that is equivalennt to mapdispatchtoprops
     <div className = "cart-dropdown">
         <div className = "cart-items">
             {
@@ -20,7 +22,10 @@ const CartDropdown = ({cartItems, history}) => (
             : <span className = 'empty-cart'>Your cart is empty</span>
                 }
             </div>
-            <CustomButton onClick = {() => history.push("/checkout")} >Go to checkout</CustomButton>
+            <CustomButton onClick = {() => {
+                history.push("/checkout")
+               dispatch(toggleCartHidden())  
+            }} >Go to checkout</CustomButton>
            
            
            
