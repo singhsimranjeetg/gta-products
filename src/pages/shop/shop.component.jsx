@@ -3,35 +3,16 @@
 
 import React from "react"
 import "./shop.styles.scss"
-import SHOP_DATA from "./shop.data"
-import PreviewCollection from "../../components/preview-collection/preview-collection.component"
+import CollectionsOverview from "../../components/collections-overview/collections-overview.component"
 
-class ShopPage extends React.Component{
-    constructor(props){
-        super(props)
+//class ShopPage extends React.Component{ dont need class component bcz no use of state here
 
-        this.state = {
-            collections: SHOP_DATA
-
-        }  
-        }
-
-        render() {
-            const {collections} = this.state    //means collections = this.state.collections
-            return (
+const ShopPage = () => (
+                
+            
             <div className = "shop-page">
-                {
-                    collections.map(({id, ...otherPreviewCollections}) => (  //object destructuring = accesing props of the collection object
-                        
-                        <PreviewCollection key = {id} {...otherPreviewCollections} />
-
-                    ))
-                }
-
-                    
+                <CollectionsOverview />          
             </div> )
             
-        }
-    }
 
-    export default ShopPage
+ export default (ShopPage)

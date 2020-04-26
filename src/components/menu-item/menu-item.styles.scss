@@ -7,7 +7,7 @@
     justify-content: center;
     border: 1px solid black;
     margin: 0 7.5px 15px;
-       //menu item does not overflow
+    overflow: hidden; //menu item does not overflow
   
     &:hover {   
       cursor: pointer;   //making cursor a finger 
