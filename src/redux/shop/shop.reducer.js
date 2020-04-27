@@ -5,7 +5,7 @@ const INITIAL_STATE =
     collections: SHOP_DATA
 }
  
- const collectionReducer = (state = INITIAL_STATE, action) => {
+ const shopReducer = (state = INITIAL_STATE, action) => {
      switch(action.type){
          default:
              return state
@@ -13,5 +13,5 @@ const INITIAL_STATE =
 
  }
 
- export default collectionReducer
+ export default shopReducer
   

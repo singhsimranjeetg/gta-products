@@ -4,7 +4,7 @@ import "./collections-overview.styles.scss"
 import {connect} from "react-redux"
 import {createStructuredSelector} from 'reselect'
 import PreviewCollection from "../preview-collection/preview-collection.component"
-import {selectCollections} from "../../redux/collection/collection.selector"
+import {selectCollections} from "../../redux/shop/shop.selector"
 
 
 const CollectionsOverview = ({collections}) => (
