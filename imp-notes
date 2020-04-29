@@ -64,6 +64,15 @@ does not call the mapSatetoprops for other comp , so the obj value for that comp
 
 
 
+React Router 
+
+If we dont use exact in the <Route> it will also render the parent components
+we use match.path for Route to tell which comp we wanna render on this path
+we use match.url for Link to tell which path we wanna go to from this link.
+
+
+
+
 
 
 

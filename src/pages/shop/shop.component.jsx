@@ -4,15 +4,19 @@
 import React from "react"
 import "./shop.styles.scss"
 import CollectionsOverview from "../../components/collections-overview/collections-overview.component"
+import { Route } from "react-router-dom"
+import CollectionPage1 from "../../components/collectionPage/collectionPage.component"
 
 //class ShopPage extends React.Component{ dont need class component bcz no use of state here
 
-const ShopPage = () => (
-                
+const ShopPage = ({match}) => {
+    //console.log(props)
+              return(  
             
             <div className = "shop-page">
-                <CollectionsOverview />          
+               <Route exact path = {`${match.path}`} component={CollectionsOverview} />
+               <Route path = {`${match.path}/:categoryId`} component = {CollectionPage1}    />     
             </div> )
-            
+}    
 
  export default (ShopPage)
