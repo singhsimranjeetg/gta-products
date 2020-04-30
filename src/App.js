@@ -12,6 +12,7 @@ import {connect} from "react-redux"
 import {setCurrentUser} from "./redux/user/users.actions"
 import {selectCurrentUser} from "./redux/user/user.selectors"
 import {createStructuredSelector} from "reselect"
+import ContactPage from './pages/contactPage/contactPage.component';
 
 
 class App extends React.Component { 
@@ -69,6 +70,7 @@ we dont need the constructor bcz we are passing the state as user obj to the red
       <Route  path = "/checkout" component = {Checkout} />
       <Route exact  path = "/" component = {HomePage}  />
      <Route path = "/shop" component = {ShopPage} />
+     <Route path = "/contact" component = {ContactPage} />
      
      <Route exact path = "/signin" render = {() =>
        this.props.currentUser ? (<Redirect to = "/"/>) 
