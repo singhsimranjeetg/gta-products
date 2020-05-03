@@ -37,7 +37,7 @@ const INITIAL_STATE =
             title: 'shoes',
             imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
             id: 6,
-            linkUrl: 'shop/shoes'
+            linkUrl: 'shop/sneakers'
           },
 
           {
@@ -45,7 +45,7 @@ const INITIAL_STATE =
             imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
             size: 'large',
             id: 7,
-            linkUrl: 'shop/womens'
+            linkUrl: 'shop/women'
           },
 
           {
@@ -53,7 +53,7 @@ const INITIAL_STATE =
             imageUrl: 'https://i.ibb.co/g3DNrhd/t-shirt.jpg',
             size: 'large',
             id: 8,
-            linkUrl: 'shop/mens'
+            linkUrl: 'shop/men'
           },
           {
             title: 'kids',
