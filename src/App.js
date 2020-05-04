@@ -14,6 +14,8 @@ import {selectCurrentUser} from "./redux/user/user.selectors"
 import {createStructuredSelector} from "reselect"
 import ContactPage from './pages/contactPage/contactPage.component';
 
+//import {selectCollectionsForPreview } from "./redux/shop/shop.selector"
+
 
 class App extends React.Component { 
   /*constructor(){
@@ -29,11 +31,12 @@ we dont need the constructor bcz we are passing the state as user obj to the red
 
 
    componentDidMount(){   //telling to whenever a auth change, update the state of app comp
+
     const {setCurrentUser} = this.props
     this.unSubscribeFromAuth = auth.onAuthStateChanged(async UsersAuth => {     //this UserAuth objects that get passed to createuserprofile fx in the firebase utils
      //console.log(UsersAuth) // this userAuth returns null if sign out and if sign in returns an auth object with display name email etc.
        if(UsersAuth){
-      const userRef = await createUserProfileDocument(UsersAuth)
+      const userRef = await createUserProfileDocument(UsersAuth)//passing the user object with Uid to this fx 
 
        userRef.onSnapshot(snapShot => {
         //console.log(snapShot.data()) this returns the collections obj(like display name) for that particualar user doc, but snapshot just rerurn the obj
@@ -47,9 +50,10 @@ we dont need the constructor bcz we are passing the state as user obj to the red
       
 
        }
-       else {
+       
          setCurrentUser(UsersAuth)  //this will set currentuser to null if there is not Userauth, means no user signed in
-       }
+        // addCollectionAndDocuments("collections",collectionsArray.map(({title, items}) => ({title, items}) ))
+      
     
        
      })
@@ -86,12 +90,13 @@ we dont need the constructor bcz we are passing the state as user obj to the red
   //the setcurrent user is a fx and we are passsing a obj as a arguement which will be the payload for that.
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser
+ //collectionsArray: selectCollectionsForPreview
 
 })
   
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))    
+  setCurrentUser: user => dispatch(setCurrentUser(user))    //we will passs the user to the reducer action  
 })
  
 export default connect(mapStateToProps, mapDispatchToProps )(App)    //first arguement is null bcz we dont need the currentuser prop here in the app comp

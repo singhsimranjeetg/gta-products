@@ -15,7 +15,7 @@ const config = {
     measurementId: "G-2BWRJX5PFW"
   }
 
-
+  firebase.initializeApp(config)   //initializing the config app
   //creating new user in db start
 
   //fx to get the users obj from the auth and store it in db's users collection
@@ -34,11 +34,11 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     //the exists prop returns true if there is already a doc with same uid in the user collectionn
     //the exists prop return false if there is no doc in db with same id that got generated in auth 
 
-    if(!snapShot.exists) {
+    if(!snapShot.exists) {    //in order to get see data, we have to use .data() mathod on snapshot
         const {displayName, email} = userAuth
         const createdAt = new Date()
 
-        try {
+        try {                      //create a new user obj in db if not already exists 
             await userRef.set({
                 displayName,
                 email,
@@ -54,10 +54,23 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 }
 //creating new user in db finished
 
+ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+   const collectionRef = firestore.collection(collectionKey)
+   console.log(collectionRef)
+
+   const batch = firestore.batch()    //forEach is similar to the map method excepts it doesnt return a new array.
+   objectsToAdd.forEach(obj => {
+     const newDocRef = collectionRef.doc()     //So what this will do is it's telling firebase give me a new document reference in this collection
+     //console.log(newDocRef)
+     batch.set(newDocRef, obj)
+   })
+   return await batch.commit() //it will fire the batch
+ }  
 
 
 
-  firebase.initializeApp(config)   //initializing the config app
+
+ 
 
   export const auth = firebase.auth() //exporting the auth with auth variable
   export const firestore = firebase.firestore()   //exporting the db 

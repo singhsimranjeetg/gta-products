@@ -1,16 +1,17 @@
 import React from 'react';
 
 
-import './homepage.styles.scss';
+//import './homepage.styles.scss';
 import Directory from "../../components/directory/directory.component"
+import {HomePageStyle} from "./homepage.styles"
 
 //homepage - whole window object 
 //directory menu 
 
 const HomePage = () => (
-  <div className = "homepage">
+  <HomePageStyle>
     <Directory />
-  </div>
+  </HomePageStyle>
   
 );
 

@@ -1,6 +1,5 @@
 import React from "react"
-import "./header.styles.scss"
-import {Link} from "react-router-dom"
+//import {Link} from "react-router-dom" not using this bcz its used in the header.styles.jsx
 import {ReactComponent as Logo} from "../../assets/crown.svg"
 import {auth} from "../../firebase/firebase.utils"
 import {connect} from "react-redux"
@@ -9,37 +8,39 @@ import CartDropdown from "../cart-dropdown/cart-dropdown.component"
 import {selectCartHidden } from "../../redux/cart/cart.selector"
 import {selectCurrentUser } from "../../redux/user/user.selectors" 
 import {createStructuredSelector} from 'reselect'
+import {LogoContainer, OptionLink,OptionsContainer, HeadereContainer} from "./header.styles"
 
 
 
 const Header = ({currentUser , hidden}) => (
-    <div className = "header">
-        <Link to = "/" className = "logo-container"> 
+    <HeadereContainer>
+        <LogoContainer to = "/"> 
          <Logo className = "logo" />
          
-           </Link>
-        <div className = "options">
+           </LogoContainer>
 
-            <Link className = "option" to = "/" >HOME</Link>
+        <OptionsContainer>
+
+            <OptionLink to = "/" >HOME</OptionLink>
             
-            <Link className = "option" to = "/shop">
+            <OptionLink  to = "/shop">
                 SHOP
-            </Link>
-            <Link className = "option" to = "/contact">
+            </OptionLink>
+            <OptionLink to = "/contact">
                 CONTACT
-            </Link>
+            </OptionLink>
             {  //checking if there is object in currentUSer prop from app, then show sign out, if null then show sign in
                 currentUser ?(
-                <div className = "option" onClick = {() => auth.signOut()}>SIGN OUT</div>)
+                <OptionLink as = "div" onClick = {() => auth.signOut()}>SIGN OUT</OptionLink>)
 
-                :( <Link className = "option" to = "/signin">SIGN IN</Link>)
+                :( <OptionLink to = "/signin">SIGN IN</OptionLink>)
             }
             <CartIcon />
-        </div>
+        </OptionsContainer>
         {
           hidden ? null : <CartDropdown />
         }
-    </div>
+    </HeadereContainer>
 ) 
 const mapSateToProps =  createStructuredSelector( {  //state is the root reducer obj, top level and below we will set a property.
     currentUser: selectCurrentUser,
