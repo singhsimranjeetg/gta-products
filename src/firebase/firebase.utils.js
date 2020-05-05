@@ -54,6 +54,9 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 }
 //creating new user in db finished
 
+
+
+//function to make new collections and documents 
  export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
    const collectionRef = firestore.collection(collectionKey)
    console.log(collectionRef)
@@ -67,7 +70,31 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
    return await batch.commit() //it will fire the batch
  }  
 
+ //finishes here
 
+
+
+//getting snapshot from shop comp and converting the db obj to the desired format
+
+export const convertCollectionsSnapshotToMap = collections => {
+  const transformedCollections = collections.docs.map(doc => {    //.docs method will point to the documents in collections and .data will get the objects 
+    const {title, items} = doc.data()
+
+    return {
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items
+    }
+
+  }) //using the reduce method on all the object and assigning a property name to each of them
+  console.log(transformedCollections)
+  return transformedCollections.reduce((accumulator, collection ) => {
+    accumulator[collection.title.toLowerCase()] = collection
+    return accumulator
+  }, {})
+
+}
 
 
  
