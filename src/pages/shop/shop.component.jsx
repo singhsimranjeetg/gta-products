@@ -3,80 +3,50 @@
 
 import React from "react"
 import "./shop.styles.scss"
-import CollectionsOverview from "../../components/collections-overview/collections-overview.component"
+//import CollectionsOverview from "../../components/collections-overview/collections-overview.component"
 import { Route } from "react-router-dom"
 import CollectionPage1 from "../../components/collectionPage/collectionPage.component"
 //import SearchBox from "../../components/search/search.component"
-
-import {firestore, convertCollectionsSnapshotToMap} from "../../firebase/firebase.utils"
+//import {firestore, convertCollectionsSnapshotToMap} from "../../firebase/firebase.utils"
 import {connect} from "react-redux"
-import {updateCollections} from "../../redux/shop/shop.actions"
+import {createStructuredSelector} from 'reselect'
+import { selectIsCollectionsLoaded} from "../../redux/shop/shop.selector"
+import {fetchCollectionsStartAsync} from "../../redux/shop/shop.actions"
+//import {updateCollections} from "../../redux/shop/shop.actions"
 import WithSpinner from "../../components/with-spinner/with-spinner.component"
+import CollectionsOverviewContainer from "../../components/collections-overview/collection-overview.container"
+import CollectionPageContainer from "../../components/collectionPage/collectionPage.container"
 
-
-const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview)
+//const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview)
 const CollectionPage1WithSpninner = WithSpinner(CollectionPage1)
 
 
 
 
 //class ShopPage extends React.Component{ dont need class component bcz no use of state here
-class ShopPage extends React.Component {
-   state = {
-      loading : true
+
+export class ShopPage extends React.Component  {
+
+   componentDidMount(){
+      const {fetchCollectionsStartAsync} = this.props
+      fetchCollectionsStartAsync()
    }
- 
-  unsubscribeFromSnapshot = null;
-
-  componentDidMount(){
-     const {updateCollections} = this.props
-     const collecctionRef = firestore.collection("collections")
-     //console.log(collecctionRef)
-
-
-   /* using REST API to access data 
-   fetch('https://firestore.googleapis.com/v1/projects/gtaproducts-db/databases/(default)/documents/collections').then(response => response.json()).then(collections => console.log(collections))
-   this.setState({loading : false}) //this will give us an error because collections is null.*/
-
-
-     
-     //using the promises pattern
-
-   collecctionRef.get().then(( collectionData => { //get tells whenever our collectionRef changes or comp renders for the first time, we want to get the data of collections
-      //console.log(snapshot)
-    const collectionsMap =  convertCollectionsSnapshotToMap(collectionData)
-    //console.log(collectionsMap)
-    updateCollections(collectionsMap)  //selector method to send the new state to redux
-    this.setState({loading : false})
-   } ))
-
-
-
-   /* observable pattern 
-     collecctionRef.onSnapshot(async snapshot => { //onSnapShot tells whenever our collectionRef changes or comp renders for the first time, we want to get the data of collections
-        //console.log(snapshot)
-      const collectionsMap =  convertCollectionsSnapshotToMap(snapshot)
-      //console.log(collectionsMap)
-      updateCollections(collectionsMap)  //selector method to send the new state to redux
-      this.setState({loading : false})
-     } )  */   
-  }
-   render () {
-       const {match} = this.props
-
+   render() {
+      const {match} = this.props
       return(     
          <div className = "shop-page">
-            <Route exact path = {`${match.path}`} render = {(props) => (
-                <CollectionsOverviewWithSpinner isLoading = {this.state.loading} {...props} />)} />
-            <Route path = {`${match.path}/:categoryId`} render = {(props) => (
-                <CollectionPage1WithSpninner isLoading = {this.state.loading} {...props} /> )}/>      
-         </div> )
-   }
+            <Route exact path = {`${match.path}`} component = {CollectionsOverviewContainer}  />
+            <Route path = {`${match.path}/:categoryId`} component = {CollectionPageContainer}/>      
+         </div> )  //if collection is null, seletor pass false, so we wanna pass true to withspiiner to start spinning, otherwise false if collecton is object
+   } 
+}
 
-} 
+ 
 
 const mapDispatchToProps = dispatch => ({
-   updateCollections : collectionsMap => dispatch(updateCollections(collectionsMap))
+   fetchCollectionsStartAsync : () => dispatch(fetchCollectionsStartAsync())
 })
 
- export default connect(null, mapDispatchToProps) (ShopPage)
+
+
+ export default connect( mapDispatchToProps) (ShopPage)

@@ -3,8 +3,9 @@ import logger from "redux-logger"  //midleware fx after actions and before reduc
 import {persistStore} from "redux-persist"
 
 import rootReducer from "./root-reducer"
+import thunk from "redux-thunk"
 
-const middlewares = [logger] //we might pass only the logger to the applymiddle but as it can take multiple
+const middlewares = [logger, thunk] //we might pass only the logger to the applymiddle but as it can take multiple
 //parameters, we wanna spead all other obj we may add later on in the middlewares array
 
 
