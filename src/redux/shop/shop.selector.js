@@ -28,3 +28,5 @@ export const selectIsCollectionsLoaded = createSelector(
     [selectshop],
     shop => !!shop.collections  //if collection stores an object, return true, if null false
 )
+//using !!null will return us false.
+// but !!object will return true.

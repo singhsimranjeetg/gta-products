@@ -71,7 +71,8 @@ we use match.path for Route to tell which comp we wanna render on this path
 we use match.url for Link to tell which path we wanna go to from this link.
 
 
-
+Rendering comp did mount - issue firing the fetch method in collection page
+bcz we invoke the fetch fx inside the compdidmount method, but render fires before that and use the initial state and fx never invokess
 
 
 

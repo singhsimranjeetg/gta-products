@@ -5,20 +5,16 @@ import React from "react"
 import "./shop.styles.scss"
 //import CollectionsOverview from "../../components/collections-overview/collections-overview.component"
 import { Route } from "react-router-dom"
-import CollectionPage1 from "../../components/collectionPage/collectionPage.component"
-//import SearchBox from "../../components/search/search.component"
-//import {firestore, convertCollectionsSnapshotToMap} from "../../firebase/firebase.utils"
+//import CollectionPage1 from "../../components/collectionPage/collectionPage.component"
+
 import {connect} from "react-redux"
-import {createStructuredSelector} from 'reselect'
-import { selectIsCollectionsLoaded} from "../../redux/shop/shop.selector"
-import {fetchCollectionsStartAsync} from "../../redux/shop/shop.actions"
-//import {updateCollections} from "../../redux/shop/shop.actions"
-import WithSpinner from "../../components/with-spinner/with-spinner.component"
+
+import {fetchCollectionsStart} from "../../redux/shop/shop.actions"
 import CollectionsOverviewContainer from "../../components/collections-overview/collection-overview.container"
 import CollectionPageContainer from "../../components/collectionPage/collectionPage.container"
 
 //const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview)
-const CollectionPage1WithSpninner = WithSpinner(CollectionPage1)
+//const CollectionPage1WithSpninner = WithSpinner(CollectionPage1)
 
 
 
@@ -27,10 +23,10 @@ const CollectionPage1WithSpninner = WithSpinner(CollectionPage1)
 
 export class ShopPage extends React.Component  {
 
-   componentDidMount(){
-      const {fetchCollectionsStartAsync} = this.props
-      fetchCollectionsStartAsync()
-   }
+componentDidMount(){
+   const {fetchCollectionsStart} = this.props
+   fetchCollectionsStart()
+}
    render() {
       const {match} = this.props
       return(     
@@ -44,9 +40,9 @@ export class ShopPage extends React.Component  {
  
 
 const mapDispatchToProps = dispatch => ({
-   fetchCollectionsStartAsync : () => dispatch(fetchCollectionsStartAsync())
+   fetchCollectionsStart : () => dispatch(fetchCollectionsStart())
 })
 
 
 
- export default connect( mapDispatchToProps) (ShopPage)
+ export default connect(null, mapDispatchToProps) (ShopPage)

@@ -7,7 +7,7 @@ import CollectionPage1 from "./collectionPage.component"
 import {compose} from "redux"
 
 const mapStateToProps = createStructuredSelector({
-    loading : selectIsCollectionsLoaded
+    isLoading : state => !selectIsCollectionsLoaded(state)
 })
 
  const CollectionPageContainer = compose(

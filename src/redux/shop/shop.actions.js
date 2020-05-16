@@ -4,13 +4,13 @@ import  {firestore, convertCollectionsSnapshotToMap} from "../../firebase/fireba
 export const fetchCollectionsStartAsync = () => {
     return dispatch => {
       const collectionRef = firestore.collection('collections');
-      dispatch(fetchCollectionsStart());
+      dispatch(fetchCollectionsStart()); //we are firing the function/action here
   
       collectionRef
         .get()
         .then(snapshot => {
           const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-          dispatch(fetchCollectionsSuccess(collectionsMap));
+          dispatch(fetchCollectionsSuccess(collectionsMap)); //value of collectionMap would be passed to action as payload.
         })
         .catch(error => dispatch(fetchCollectionsFailure(error.message)));
     };

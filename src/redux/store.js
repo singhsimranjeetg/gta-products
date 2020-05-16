@@ -3,9 +3,13 @@ import logger from "redux-logger"  //midleware fx after actions and before reduc
 import {persistStore} from "redux-persist"
 
 import rootReducer from "./root-reducer"
-import thunk from "redux-thunk"
+//import thunk from "redux-thunk"
+import createSagaMiddleware from "redux-saga"
+import {fetchCollectionsStart} from "../redux/shop/shop.saga"
 
-const middlewares = [logger, thunk] //we might pass only the logger to the applymiddle but as it can take multiple
+
+const sagaMiddleware =createSagaMiddleware() //can take an obj with some conf. setting, but we dont need
+const middlewares = [logger, sagaMiddleware ] //we might pass only the logger to the applymiddle but as it can take multiple
 //parameters, we wanna spead all other obj we may add later on in the middlewares array
 
 
@@ -20,6 +24,7 @@ const middlewares = [logger, thunk] //we might pass only the logger to the apply
 
 export const store = createStore(rootReducer, applyMiddleware(...middlewares))
 
+sagaMiddleware.run(fetchCollectionsStart)
 //creating the persisted version of our store.
 export const persistor =  persistStore(store)
 
