@@ -59,10 +59,10 @@ background-color: #4285f4;
 color: white;
 padding: 3px;
 text-align: center;
-border:none;
+border: 1px solid black;
 
 &:hover {
   background-color: #357ae8;
-  border: none;
+  
 }
 `

@@ -7,8 +7,8 @@ import CollectionPage1 from "./collectionPage.component"
 import {compose} from "redux"
 
 const mapStateToProps = createStructuredSelector({
-    isLoading : state => !selectIsCollectionsLoaded(state)
-})
+    isLoading : state => !selectIsCollectionsLoaded(state)  //inverting 
+})//we have to use same name "isLoading here to match the props passed to withSpinner comp"
 
  const CollectionPageContainer = compose(
     connect(mapStateToProps),

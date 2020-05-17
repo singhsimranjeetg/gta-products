@@ -33,7 +33,7 @@ we dont need the constructor bcz we are passing the state as user obj to the red
    componentDidMount(){   //telling to whenever a auth change, update the state of app comp
 
     const {setCurrentUser} = this.props
-    this.unSubscribeFromAuth = auth.onAuthStateChanged(async UsersAuth => {     //this UserAuth objects that get passed to createuserprofile fx in the firebase utils
+ /*this.unSubscribeFromAuth = auth.onAuthStateChanged(async UsersAuth => {     //this UserAuth objects that get passed to createuserprofile fx in the firebase utils
      //console.log(UsersAuth) // this userAuth returns null if sign out and if sign in returns an auth object with display name email etc.
        if(UsersAuth){
       const userRef = await createUserProfileDocument(UsersAuth)//passing the user object with Uid to this fx 
@@ -56,11 +56,13 @@ we dont need the constructor bcz we are passing the state as user obj to the red
       
     
        
-     })
+     })*/
    }
     componentWillUnmount(){
       this.unSubscribeFromAuth()
     }
+
+
    render() {
     // doesnt work-  const {currentUser} = this.state    <h2>Welcome to {this.state.currentUser.DisplayNam}</h2>
    return (  

@@ -2,7 +2,11 @@ import React from "react"
 import "./sign-in.styles.scss"
 import FormInput from "../form-input/form-input.component"
 import CustomButton from "../custom-button/custom-button.component"
-import {auth,SignInWithGoogle} from "../../firebase/firebase.utils"
+import {auth} from "../../firebase/firebase.utils"
+
+import {googleSignInStart} from "../../redux/user/users.actions"
+import {connect} from "react-redux"
+
 
 
 class SignIn extends React.Component {
@@ -11,11 +15,6 @@ class SignIn extends React.Component {
         this.state = {
             email: "",
             password: ""
-
-            
-
-        
-
         }
 
     }
@@ -37,13 +36,18 @@ class SignIn extends React.Component {
         
      }
 
-     handleChange = event => {
+     handleChange = (event) => {
+        /* const {googleSignInStarti} = this.props
+         googleSignInStarti()
+         */
+         
          const {value, name} = event.target
          this.setState({[name]: value})
      }
 
 
     render(){
+        const {googleSignInStart} = this.props
         return (
             <div className = "sign-in">
                 <h2>I already have an account</h2>
@@ -69,17 +73,21 @@ class SignIn extends React.Component {
                       required />
     
                     <div className = "buttons">
-                    <CustomButton type="submit" >SIGN IN
+                    <CustomButton type="submit" >SIGN IN 
                         </CustomButton>
-                    <CustomButton onClick = {SignInWithGoogle} isGoogleSignIn  >SIGN IN WITH GOOGLE
+                    <CustomButton type = "button" onClick = {googleSignInStart} isGoogleSignIn  >SIGN IN WITH GOOGLE
                         </CustomButton>
                     </div>
-                    
+                
                 </form>
             </div>
+            //in case of cus
         )//used onClick mehtod to call signinwithgoogle fx from other folder
     }  //used </CustomButton> bcz wanna use the children prop of that in custom button comp.
 }  //so by default isgooglesignin will pass the true value to the custom button
 
+const mapDispatchToProps = (dispatch) => ({
+    googleSignInStart: () => dispatch(googleSignInStart()) 
+})
 
-export default SignIn
+export default connect(null, mapDispatchToProps)(SignIn)

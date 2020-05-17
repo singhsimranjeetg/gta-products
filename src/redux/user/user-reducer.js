@@ -1,7 +1,8 @@
 import {userActionTypes} from "./user.types"
 
 const INITIAL_STATE = {
-    currentUser: null
+    currentUser: null,
+    error: null
 }
 
 //NOTE: each reducer get the action we ever get fired, even though its not related
@@ -13,11 +14,21 @@ const INITIAL_STATE = {
 
 const userReducer = (state = INITIAL_STATE, action) => {
     switch(action.type){
-        case userActionTypes.SET_CURRENT_USER:    //if ever the set current user action gets fired 
+        case userActionTypes.GOOGLE_SIGNIN_SUCCESS:
+        case userActionTypes.EMAIL_SIGNIN_SUCCESS:    //if ever the set current user action gets fired 
           return{
               ...state,
-              currentUser: action.payload
+              currentUser: action.payload,
+              error: null
           }
+          case userActionTypes.GOOGLE_SIGNIN_FAILURE:
+            case userActionTypes.EMAIL_SIGNIN_FAILURE:    //if ever the set current user action gets fired 
+              return{
+                  ...state,
+                  currentUser: null,
+                  error: action.payload
+              }
+       
     
         default:
             return state   //we none of the action type matches the current action, we will return the current state 

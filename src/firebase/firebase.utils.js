@@ -104,12 +104,12 @@ export const convertCollectionsSnapshotToMap = collections => {
 
   //setting up google authentication utility
 //give access to googleauth class from the auth library
-  const provider = new firebase.auth.GoogleAuthProvider()
+ export const googleprovider = new firebase.auth.GoogleAuthProvider()
 
-  provider.setCustomParameters({prompt: "select_account"})
+  googleprovider.setCustomParameters({prompt: "select_account"})
   
   //export the var that use auth method form firebase and use the signineithPopup with provider that is google in this case
-  export const SignInWithGoogle = () => auth.signInWithPopup(provider)
+  export const SignInWithGoogle = () => auth.signInWithPopup(googleprovider)
 
   export default firebase
 
