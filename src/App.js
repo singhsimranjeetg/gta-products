@@ -7,12 +7,14 @@ import Checkout from "./pages/checkout/checkoutpage/checkout.component"
 
 import Header from  "./components/header/header.component"
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component"
-import {auth, createUserProfileDocument} from "./firebase/firebase.utils"
+//import {auth, createUserProfileDocument} from "./firebase/firebase.utils"
 import {connect} from "react-redux"
-import {setCurrentUser} from "./redux/user/users.actions"
+//import {setCurrentUser} from "./redux/user/users.actions"
 import {selectCurrentUser} from "./redux/user/user.selectors"
 import {createStructuredSelector} from "reselect"
 import ContactPage from './pages/contactPage/contactPage.component';
+
+import {checkUserSession} from "./redux/user/users.actions"
 
 //import {selectCollectionsForPreview } from "./redux/shop/shop.selector"
 
@@ -30,33 +32,9 @@ we dont need the constructor bcz we are passing the state as user obj to the red
     unSubscribeFromAuth = null
 
 
-   componentDidMount(){   //telling to whenever a auth change, update the state of app comp
-
-    const {setCurrentUser} = this.props
- /*this.unSubscribeFromAuth = auth.onAuthStateChanged(async UsersAuth => {     //this UserAuth objects that get passed to createuserprofile fx in the firebase utils
-     //console.log(UsersAuth) // this userAuth returns null if sign out and if sign in returns an auth object with display name email etc.
-       if(UsersAuth){
-      const userRef = await createUserProfileDocument(UsersAuth)//passing the user object with Uid to this fx 
-
-       userRef.onSnapshot(snapShot => {
-        //console.log(snapShot.data()) this returns the collections obj(like display name) for that particualar user doc, but snapshot just rerurn the obj
-         setCurrentUser({
-           id: snapShot.id,
-           ...snapShot.data()
-           
-         })
-  //console.log(setCurrentUser(UsersAuth)) this will start an action type as set current user and payload as big userAuth obj that has all the prop of signed in user
-      })
-      
-
-       }
-       
-         setCurrentUser(UsersAuth)  //this will set currentuser to null if there is not Userauth, means no user signed in
-        // addCollectionAndDocuments("collections",collectionsArray.map(({title, items}) => ({title, items}) ))
-      
-    
-       
-     })*/
+   componentDidMount(){  
+     const {checkUserSession} = this.props
+     checkUserSession ()
    }
     componentWillUnmount(){
       this.unSubscribeFromAuth()
@@ -93,15 +71,15 @@ we dont need the constructor bcz we are passing the state as user obj to the red
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser
  //collectionsArray: selectCollectionsForPreview
-
 })
-  
+ const mapDispatchToProps = dispatch => ({
+   checkUserSession: () => dispatch(checkUserSession())
+ })
 
-const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))    //we will passs the user to the reducer action  
-})
+
+
  
-export default connect(mapStateToProps, mapDispatchToProps )(App)    //first arguement is null bcz we dont need the currentuser prop here in the app comp
+export default connect(mapStateToProps, mapDispatchToProps)(App)    //first arguement is null bcz we dont need the currentuser prop here in the app comp
 
 
 
@@ -116,3 +94,33 @@ export default connect(mapStateToProps, mapDispatchToProps )(App)    //first arg
      //the prev state is the state before action was fired and second is the 
      //action itself and third is the state after the action has modified 
      //any of our reducers
+
+
+
+   
+
+   // const {setCurrentUser} = this.props
+ /*this.unSubscribeFromAuth = auth.onAuthStateChanged(async UsersAuth => {     //this UserAuth objects that get passed to createuserprofile fx in the firebase utils
+     //console.log(UsersAuth) // this userAuth returns null if sign out and if sign in returns an auth object with display name email etc.
+       if(UsersAuth){
+      const userRef = await createUserProfileDocument(UsersAuth)//passing the user object with Uid to this fx 
+
+       userRef.onSnapshot(snapShot => {
+        //console.log(snapShot.data()) this returns the collections obj(like display name) for that particualar user doc, but snapshot just rerurn the obj
+         setCurrentUser({
+           id: snapShot.id,
+           ...snapShot.data()
+           
+         })
+  //console.log(setCurrentUser(UsersAuth)) this will start an action type as set current user and payload as big userAuth obj that has all the prop of signed in user
+      })
+      
+
+       }
+       
+         setCurrentUser(UsersAuth)  //this will set currentuser to null if there is not Userauth, means no user signed in
+        // addCollectionAndDocuments("collections",collectionsArray.map(({title, items}) => ({title, items}) ))
+      
+    
+       
+     })*/

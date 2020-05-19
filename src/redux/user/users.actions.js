@@ -5,40 +5,33 @@ export const setCurrentUser = user => ({  //so user is same obj as UserAuth or U
     payload: user
 })
 
-export const googleSignInStart = (emailAndPassword) => ({
+export const googleSignInStart = () => ({
     type: userActionTypes.GOOGLE_SIGNIN_START,
     
 })
 
 
-export const googleSignInSuccess = (user) => ({
-    type: userActionTypes.GOOGLE_SIGNIN_SUCCESS,
+export const SignInSuccess = (user) => ({
+    type: userActionTypes.SIGNIN_SUCCESS,
     payload: user
     
 })
 
 
-export const googleSignInFailure = (error) => ({
-    type: userActionTypes.GOOGLE_SIGNIN_FAILURE,
+export const SignInFailure = (error) => ({
+    type: userActionTypes.SIGNIN_FAILURE,
     payload: error
     
 })
 
-export const emailSignInStart = () => ({
+export const emailSignInStart = (emailAndPassword) => ({
     type: userActionTypes.EMAIL_SIGNIN_START,
+    payload: emailAndPassword
     
 })
 
-
-export const emailSignInSuccess = (user) => ({
-    type: userActionTypes.EMAIL_SIGNIN_SUCCESS,
-    payload: user
-    
+export const checkUserSession = () => ({
+    type: userActionTypes.CHECK_USER_SESSION
 })
 
 
-export const emailSignInFailure = (error) => ({
-    type: userActionTypes.EMAIL_SIGNIN_FAILURE,
-    payload: error
-    
-})

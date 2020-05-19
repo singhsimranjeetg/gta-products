@@ -97,6 +97,15 @@ export const convertCollectionsSnapshotToMap = collections => {
 }
 
 
+  export const getCurretnUser = () => {
+    return new Promise((resolve, reject) => {
+      const unsubscribe = auth.onAuthStateChanged(userAuth => {
+        unsubscribe()
+        resolve(userAuth)
+      }, reject)
+    })
+  }
+
  
 
   export const auth = firebase.auth() //exporting the auth with auth variable
