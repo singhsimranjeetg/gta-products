@@ -4,7 +4,8 @@ import {createSelector} from "reselect"
 
 
 
-const selectCart = state => state.cart   //input selector, access the cart obj from state
+export const selectCart = state => state.cart   
+ //input selector, access the cart obj from state
 
 export const selectCartHidden = createSelector(
     [selectCart],
@@ -14,13 +15,14 @@ export const selectCartHidden = createSelector(
 
 export const selectCartItems = createSelector(
     [selectCart] ,
-    cart => cart.cartItems
+    cart => cart.ItemsInCart
 )
 
+
 export const selectCartItemsCount = createSelector(
-    [selectCartItems], 
+     [selectCartItems], 
     cartItems => cartItems.reduce((accumulatedQuantity, currentItemQuantity) =>
-    accumulatedQuantity + currentItemQuantity.quantity, 0) 
+    accumulatedQuantity + currentItemQuantity.quantity, 0)
 )
 
 export const selectCartItemsTotalPrice = createSelector(
@@ -29,3 +31,4 @@ export const selectCartItemsTotalPrice = createSelector(
     accumulatedTotalPrice + (currentItem.price * currentItem.quantity), 0) 
 )
 
+/* */

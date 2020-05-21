@@ -4,17 +4,22 @@ import { userActionTypes} from "./user.types"
 
 import {auth, googleprovider, createUserProfileDocument, getCurretnUser} from "../../firebase/firebase.utils"
 
-import {SignInSuccess, SignInFailure} from "./users.actions"
+import {SignInSuccess, SignInFailure, signOutFailure, signOutSuccess} from "./users.actions"
 
 //import {googleSignInStart, emailSignInStart} from "./users.actions"
 
 //import {createUserProfileDocument} from "../../firebase/firebase.utils"
 
 //using this reuseable function bcz both email and google sign in get the same user object.
+
+
+
+//REUSEABLE FUNCTION TO USE FOR LOGIN
 export function *getSnapshotFromAuth(userAuth){
     try{
-        const userRef = yield call(createUserProfileDocument, userAuth)
+        const userRef = yield call(createUserProfileDocument, userAuth) //this fx return the userRef, the document of the user trying to login
         const userSnapshot = yield userRef.get()
+       // console.log(userSnapshot.data())  this will contain the details of collection of that user ex. displ name, created at 
         yield put(SignInSuccess({ id : userSnapshot.id, ...userSnapshot.data()}))
  
  
@@ -23,11 +28,16 @@ export function *getSnapshotFromAuth(userAuth){
      }
     }
 
+
+
+
+//GOOGLE LOGIN SAGA
 export function* googleSignInAsyc(){
     //yield console.log("hello")
 
     try {
-        const {user} = yield auth.signInWithPopup(googleprovider) //not using the fx signinwithgoogle here, bcz we want access to the value returned from this method
+        const {user} = yield auth.signInWithPopup(googleprovider)
+        //console.log(user) //not using the fx signinwithgoogle here, bcz we want access to the value returned from this method
        // console.log(userRef) this userRef is the same userAuth object we were in App.js
        //de structuring the user property off the obj returned by the aboove method and storing it in user var.
     yield getSnapshotFromAuth(user)
@@ -45,11 +55,7 @@ export function *googleSignInStart(){
 
 
 
-
-
-
-
-
+//EMAIL LOGIN SAGA 
 export function* emailSignInAsync( {payload: {email, password}}){
      //console.log("ballle mundya")
     try{
@@ -72,7 +78,7 @@ export function *emailSignInStart (){
 
 
 
-
+//USER PERSISTENCE SAGA
 export function *isUserAuthenticated(){
     //yield console.log("gdfjgdfc")
     try {
@@ -92,9 +98,21 @@ export function *checkUserSession (){
 
 
 
+//SIGN OUT SAGA
 
+function *signOutAsync(){
+   // yield console.log("good")
+   try{
+    yield auth.signOut() //this method is to sign out the user from forebase and deletes the sessions.
+     yield put(signOutSuccess())
+   }catch(error){
+       yield put(signOutFailure(error))
+   }
+}
 
-
+function *signOutStart(){
+    yield takeLatest(userActionTypes.SIGN_OUT_START, signOutAsync)
+}
 
 
 
@@ -104,7 +122,8 @@ export function *userSagas(){
     yield all([
         call(googleSignInStart),
         call(emailSignInStart),
-        call(checkUserSession)
+        call(checkUserSession),
+        call(signOutStart)
                
           
     ])

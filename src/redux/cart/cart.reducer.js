@@ -1,9 +1,10 @@
 import {cartActionTypes} from "./cart.types"
+//import {userActionTypes} from "../user/user.types"
 import {addItemsToCart, removeItemFromCart} from "./cart.utils"
 
 const INITIAL_STATE = {
     hidden: true,
-    cartItems: []
+    ItemsInCart : []
 }
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -17,7 +18,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
             case cartActionTypes.ADD_ITEM:
                 return {
                     ...state,
-                    cartItems: addItemsToCart(state.cartItems, action.payload) 
+                    ItemsInCart: addItemsToCart(state.ItemsInCart, action.payload) 
                     //cartItems: [...state.cartItems, action.payload]  //we are just passing all prev items in array
                     //and also unshifting the payload in it.
                 }
@@ -25,7 +26,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
             case cartActionTypes.CLEAR_ITEM_FROM_CART: 
              return {
                  ...state,  //speading everything else in our state 
-                 cartItems: state.cartItems.filter(
+                 ItemsInCart: state.ItemsInCart.filter(
                      cartItem => cartItem.id !== action.payload.id  //if any cartItem id matches the item in the payload , filter it out
                      //filter will only return the items which pass this condition
                  )
@@ -34,8 +35,14 @@ const cartReducer = (state = INITIAL_STATE, action) => {
              case cartActionTypes.REMOVE_ITEM:
                  return {
                      ...state,
-                     cartItems: removeItemFromCart(state.cartItems, action.payload)
+                     ItemsInCart: removeItemFromCart(state.ItemsInCart, action.payload)
                  }
+                 case cartActionTypes.CLEAR_ALL_CART_ITEMS:
+                 return {
+                     ...state,
+                     ItemsInCart: []
+                 }
+                 
             default:
                 return state
     }

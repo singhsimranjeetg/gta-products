@@ -22,11 +22,17 @@ const userReducer = (state = INITIAL_STATE, action) => {
           }
           
             case userActionTypes.SIGNIN_FAILURE:    //if ever the set current user action gets fired 
+            case userActionTypes.SIGN_OUT_FAILURE:
               return{
                   ...state,
-                  currentUser: null,
                   error: action.payload
               }
+              case userActionTypes.SIGN_OUT_SUCCESS:
+                  return{
+                      ...state,
+                      currentUser: null, 
+                      error : null
+                  }
        
     
         default:
