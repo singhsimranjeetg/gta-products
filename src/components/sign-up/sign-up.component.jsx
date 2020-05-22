@@ -2,7 +2,10 @@ import React from "react"
 import "./sign-up.styles.scss"
 import FormInput from "../form-input/form-input.component"
 import CustomButton from "../custom-button/custom-button.component"
-import {auth, createUserProfileDocument } from "../../firebase/firebase.utils" 
+//import {auth, createUserProfileDocument } from "../../firebase/firebase.utils" 
+import {signUpStart} from "../../redux/user/users.actions"
+
+import {connect} from "react-redux"
 
 
 
@@ -19,15 +22,18 @@ class SignUp extends React.Component {
         }
 
     }
-     handleSubmit = async event => {   //didn't get why this method defined outside the construcotr and has obj destructuring 
+     handleSubmit = event => {   //didn't get why this method defined outside the construcotr and has obj destructuring 
         event.preventDefault()
 
-        const {displayName,email,password, confirmPassword} = this.state
+        const {displayName,email, password, confirmPassword} = this.state
+        const {signUpStart} =this.props
         if (password !== confirmPassword){
         alert("passwords don't match")
-        //password.focus()
+        
         return
     }
+    signUpStart({email, password, displayName})
+    /*
     try{
 
        const {user} = await auth.createUserWithEmailAndPassword(email,password)  //hover over to see fx
@@ -40,7 +46,7 @@ class SignUp extends React.Component {
     catch(err){
         console.log(err)
 
-    }
+    }*/
         
         
      }
@@ -51,7 +57,9 @@ class SignUp extends React.Component {
      }
 
 
-    render(){
+    render()
+    {
+        //const {signUpStartProp} = this.props
         return (
             <div className = "sign-up">
                 <h2 className= "title">Don't have an account yet ?</h2>
@@ -111,5 +119,8 @@ class SignUp extends React.Component {
     }  //used </CustomButton> bcz wanna use the children prop of that in custom button comp.
 }  //so by default isgooglesignin will pass the true value to the custom button
 
+const mapDispatchToProps = dispatch => ({
+    signUpStart : (userCredentials) => dispatch(signUpStart(userCredentials))
+})
 
-export default SignUp
+export default connect(null, mapDispatchToProps)(SignUp)

@@ -4,7 +4,7 @@ import { userActionTypes} from "./user.types"
 
 import {auth, googleprovider, createUserProfileDocument, getCurretnUser} from "../../firebase/firebase.utils"
 
-import {SignInSuccess, SignInFailure, signOutFailure, signOutSuccess} from "./users.actions"
+import {SignInSuccess, SignInFailure, signOutFailure, signOutSuccess, SignUpFailure, SignUpSuccess} from "./users.actions"
 
 //import {googleSignInStart, emailSignInStart} from "./users.actions"
 
@@ -15,9 +15,9 @@ import {SignInSuccess, SignInFailure, signOutFailure, signOutSuccess} from "./us
 
 
 //REUSEABLE FUNCTION TO USE FOR LOGIN
-export function *getSnapshotFromAuth(userAuth){
+export function *getSnapshotFromAuth(userAuth, additionalData){
     try{
-        const userRef = yield call(createUserProfileDocument, userAuth) //this fx return the userRef, the document of the user trying to login
+        const userRef = yield call(createUserProfileDocument, userAuth, additionalData) //this fx return the userRef, the document of the user trying to login
         const userSnapshot = yield userRef.get()
        // console.log(userSnapshot.data())  this will contain the details of collection of that user ex. displ name, created at 
         yield put(SignInSuccess({ id : userSnapshot.id, ...userSnapshot.data()}))
@@ -116,6 +116,41 @@ function *signOutStart(){
 
 
 
+//SIGN UP SAGA
+
+function *signUpAsync({payload: {email, password, displayName}}){
+    //yield console.log("hekk")
+    try{
+
+        const {user} = yield auth.createUserWithEmailAndPassword(email,password)  //hover over to see fx
+        yield put(SignUpSuccess({user, additionalData : {displayName}}))
+      //  yield createUserProfileDocument(user, {displayName})  //we are creating a new user in the db
+        
+      //  yield console.log(user)
+        
+        //this.setState({email: "" , password: "", displayName: "", confirmPassword: "", phoneNumber: ""})
+ 
+     }
+     catch(error){
+         yield put(SignUpFailure(error))
+        // yield console.log(error)
+ 
+     }
+}
+
+function *signUpStart(){
+    yield takeLatest(userActionTypes.SIGNUP_START, signUpAsync)
+}
+
+
+function *signInAfterSignOut({payload: {user , additionalData}}){
+   yield getSnapshotFromAuth(user, additionalData)
+}
+
+function *onSignUpSuccess(){
+    yield takeLatest(userActionTypes.SIGNUP_SUCCESS, signInAfterSignOut)
+}
+
 
 
 export function *userSagas(){
@@ -123,7 +158,9 @@ export function *userSagas(){
         call(googleSignInStart),
         call(emailSignInStart),
         call(checkUserSession),
-        call(signOutStart)
+        call(signOutStart),
+        call(signUpStart),
+        call(onSignUpSuccess)
                
           
     ])

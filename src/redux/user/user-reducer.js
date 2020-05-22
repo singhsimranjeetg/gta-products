@@ -23,6 +23,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
           
             case userActionTypes.SIGNIN_FAILURE:    //if ever the set current user action gets fired 
             case userActionTypes.SIGN_OUT_FAILURE:
+            case userActionTypes.SIGNUP_FAILURE:
               return{
                   ...state,
                   error: action.payload
