@@ -1,12 +1,83 @@
 import React from "react"
 import "./contactPage.styles.scss"
+import {ContactPageContainer, FormOptions } from "./contactPage.styles"
+import FormInput from '../../components/form-input/form-input.component'
+import CustomButton from "../../components/custom-button/custom-button.component"
+import {createUserMessages} from "../../firebase/firebase.utils"
 
 
-const ContactPage = () => (
+export class ContactPage extends React.Component {
+  constructor(props){
+  super(props)
+  this.state = {
+    senderName : "",
+    email : "",
+    message : ""
+  }
+}
+
+  handleSubmit = async event =>  {
+    event.preventDefault()
+   // console.log("fvsfd")
+    //const {senderName, email, message} = this.state
   
-    <div className = "contact-page">Please contact us at <span style = {{fontWeight : "bold"}}>info.gtaproducts@gmail.com</span> for any queries. 
-    </div>
-)
+   
+    try{
+      await createUserMessages(this.state)
+      this.setState({email: "" , senderName: "", message: ""})
+   
+   
+    }catch(error){
+      console.log(error.message)
+    }
+  }
+
+  handleChange = event => {
+    const {name, value } = event.target
+    this.setState({[name] : value})
+  }
+  
+  render (){
+    return(
+    <ContactPageContainer>
+        <h1>Contact Us</h1>
+       <FormOptions onSubmit = {this.handleSubmit}>
+
+                    <FormInput type="text"
+                     name = "senderName" 
+                     value = {this.state.senderName} 
+                     autoComplete = "off"
+                     handleChange = {this.handleChange}
+                     label = "Name"
+                      required />
+
+                    <FormInput
+                     name = "email"
+                     value ={this.state.email} 
+                     type="email" 
+                     handleChange = {this.handleChange}
+                     autoComplete = "on"
+                     label = 'Email'
+                      required />
+                    
+
+                    <FormInput type="text"
+                     name = "message" 
+                     value = {this.state.message} 
+                     autoComplete = "off"
+                     handleChange = {this.handleChange}
+                     label = "Message"
+                      required />
+
+                     
+    
+                    <CustomButton  type="submit" >SEND
+                        </CustomButton>
+                        </FormOptions>
+    </ContactPageContainer>
+  
+
+    )}}
 
 export default ContactPage
 

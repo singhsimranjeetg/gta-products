@@ -1,67 +1,44 @@
-import React from "react"
+import React, {useState} from "react"
 import "./sign-in.styles.scss"
 import FormInput from "../form-input/form-input.component"
 import CustomButton from "../custom-button/custom-button.component"
 //import {auth} from "../../firebase/firebase.utils"
+
 
 import {googleSignInStart, emailSignInStart} from "../../redux/user/users.actions"
 import {connect} from "react-redux"
 
 
 
-class SignIn extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            email: "",
-            password: ""
-        }
+const SignIn = ({emailSignInStart, googleSignInStart}) => {
+    const [ userCredentials, setCredentials ] = useState({email: "", password: ""})
+  
 
-    }
-     handleSubmit = event => {   //didn't get why this method defined outside the construcotr and has obj destructuring 
-        event.preventDefault()
-      const {emailSignInStart} = this.props
-      const {email, password} = this.state
-      
+
+    const {email, password} = userCredentials
+
+     const handleSubmit = event => {   //didn't get why this method defined outside the construcotr and has obj destructuring 
+      event.preventDefault()     
       emailSignInStart(email,password) 
       }
-/*   
-       try{
-           await auth.signInWithEmailAndPassword(email,password)
-           this.setState({email: "" , password: ""})
+   
 
-
-       }
-       catch(err) {
-           console.log(err)
-
-       }  */
-        
-     
-
-     handleChange = (event) => {
-        /* const {googleSignInStarti} = this.props
-         googleSignInStarti()
-         */
-         
+     const handleChange = (event) => {
          const {value, name} = event.target
-         this.setState({[name]: value})
+         setCredentials({...userCredentials, [name]: value})
      }
 
-
-    render(){
-        const {googleSignInStart} = this.props
         return (
             <div className = "sign-in">
                 <h2>I already have an account</h2>
                 <span>Sign in with your email and password</span>
 
-                <form onSubmit = {this.handleSubmit}>
+                <form onSubmit = {handleSubmit}>
                     <FormInput
                      name = "email"
-                     value ={this.state.email} 
+                     value ={email} 
                      type="email" 
-                     handleChange = {this.handleChange}
+                     handleChange = {handleChange}
                      autoComplete = "on"
                      label = 'Email'
                       required />
@@ -70,9 +47,9 @@ class SignIn extends React.Component {
 
                     <FormInput type="password"
                      name = "password" 
-                     value = {this.state.password} 
+                     value = {password} 
                      autoComplete = "off"
-                     handleChange = {this.handleChange}
+                     handleChange = {handleChange}
                      label = "Password"
                       required />
     
@@ -88,11 +65,23 @@ class SignIn extends React.Component {
             //in case of cus
         )//used onClick mehtod to call signinwithgoogle fx from other folder
     }  //used </CustomButton> bcz wanna use the children prop of that in custom button comp.
-}  //so by default isgooglesignin will pass the true value to the custom button
+  //so by default isgooglesignin will pass the true value to the custom button
 
 const mapDispatchToProps = (dispatch) => ({
     googleSignInStart: () => dispatch(googleSignInStart()),
-    emailSignInStart: (email,password) => dispatch(emailSignInStart({email, password}))
+    emailSignInStart: (email, password) => dispatch(emailSignInStart({email, password}))
 })
 
 export default connect(null, mapDispatchToProps)(SignIn)
+
+/*   this code before using saga.
+       try{
+           await auth.signInWithEmailAndPassword(email,password)
+           this.setState({email: "" , password: ""})
+
+
+       }
+       catch(err) {
+           console.log(err)
+
+       }  */

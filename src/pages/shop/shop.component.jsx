@@ -1,7 +1,7 @@
 //because we gonna store data for our collection items here, 
 //we need state mathod, so we are using class component here.
 
-import React from "react"
+import React, {useEffect} from "react"
 import "./shop.styles.scss"
 //import CollectionsOverview from "../../components/collections-overview/collections-overview.component"
 import { Route } from "react-router-dom"
@@ -21,21 +21,24 @@ import CollectionPageContainer from "../../components/collectionPage/collectionP
 
 //class ShopPage extends React.Component{ dont need class component bcz no use of state here
 
-export class ShopPage extends React.Component  {
+const ShopPage = ({fetchCollectionsStart, match}) =>  {
 
-componentDidMount(){
+/*componentDidMount(){
    const {fetchCollectionsStart} = this.props
    fetchCollectionsStart()
 }
-   render() {
-      const {match} = this.props
+   render() { */
+   useEffect(() => {
+      fetchCollectionsStart()
+   },[fetchCollectionsStart])
+      
       return(     
          <div className = "shop-page">
             <Route exact path = {`${match.path}`} component = {CollectionsOverviewContainer}  />
             <Route path = {`${match.path}/:categoryId`} component = {CollectionPageContainer}/>      
          </div> )  //if collection is null, seletor pass false, so we wanna pass true to withspiiner to start spinning, otherwise false if collecton is object
    } 
-}
+
 
  
 

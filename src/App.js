@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import HomePage from "./pages/homepage/homepage.component"
 import './App.css';
 import {Switch, Route, Redirect} from "react-router-dom";
@@ -19,29 +19,14 @@ import {checkUserSession} from "./redux/user/users.actions"
 //import {selectCollectionsForPreview } from "./redux/shop/shop.selector"
 
 
-class App extends React.Component { 
-  /*constructor(){
-    super()
+const App = ({checkUserSession, currentUser}) =>  { 
 
-    this.state = {
-      currentUser: null
-    }
-we dont need the constructor bcz we are passing the state as user obj to the reducer
-  }*/ 
-
-    unSubscribeFromAuth = null
+  //converted app comp to hooks and use useEffect instead of componentdidcomponent.
+    useEffect(() => {
+      checkUserSession()
+    }, [checkUserSession]) //if not passed this second array, useEffect will re render after signinsuccess bcz current user changes. 
 
 
-   componentDidMount(){  
-     const {checkUserSession} = this.props
-     checkUserSession ()
-   }
-    componentWillUnmount(){
-      this.unSubscribeFromAuth()
-    }
-
-
-   render() {
     // doesnt work-  const {currentUser} = this.state    <h2>Welcome to {this.state.currentUser.DisplayNam}</h2>
    return (  
    //using reducer to pass the props in the header comp
@@ -57,14 +42,14 @@ we dont need the constructor bcz we are passing the state as user obj to the red
      <Route path = "/contact" component = {ContactPage} />
      
      <Route exact path = "/signin" render = {() =>
-       this.props.currentUser ? (<Redirect to = "/"/>) 
+       currentUser ? (<Redirect to = "/"/>) 
        : (<SignInAndSignUpPage />) }/>
       </Switch>
       
     </div>
   );  
 }  
-}
+
     //we are passing a user obj to the setscuurent user action, dispatch is a way for redux to know whatever obj we are passing
   //will be a action obj and will be passed to all the reducers.
   //the setcurrent user is a fx and we are passsing a obj as a arguement which will be the payload for that.

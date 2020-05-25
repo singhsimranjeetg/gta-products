@@ -16,7 +16,10 @@ const config = {
   }
 
   firebase.initializeApp(config)   //initializing the config app
-  //creating new user in db start
+
+
+
+  //creating new user in db start   ############### 
 
   //fx to get the users obj from the auth and store it in db's users collection
 export const createUserProfileDocument = async (userAuth, additionalData) => {
@@ -52,7 +55,35 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     }
     return userRef
 }
-//creating new user in db finished
+//creating new user in db finished***********
+
+
+//storing user messages in firestore  ###############
+
+export const createUserMessages = async (messageInfo, additionalData) => {
+  const messageRef = firestore.collection(`messages`).doc()
+  
+
+  const {senderName, email, message} = messageInfo
+  
+  const createdAt = new Date()
+
+  try{
+     await messageRef.set({
+       senderName,
+       email,
+       createdAt,
+       message,
+       ...additionalData
+     })
+
+  }catch(error){
+    console.log("error creating the message doc", error.message)
+
+  }
+  return messageRef
+}
+//storing user Messages ends*********
 
 
 

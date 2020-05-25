@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import "./sign-up.styles.scss"
 import FormInput from "../form-input/form-input.component"
 import CustomButton from "../custom-button/custom-button.component"
@@ -9,75 +9,46 @@ import {connect} from "react-redux"
 
 
 
-class SignUp extends React.Component {
-    constructor(){
-        super()
-        this.state = {
-            displayName: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-            phoneNumber: ""
+const SignUp = ({signUpStart}) => {
+    const [userCredentials , setCredentials] = useState({displayName: "",email: "", password: "", confirmPassword: "", phoneNumber: ""})
 
-        }
-
-    }
-     handleSubmit = event => {   //didn't get why this method defined outside the construcotr and has obj destructuring 
+    const {displayName,email, password, confirmPassword, phoneNumber} = userCredentials
+    const handleSubmit = event => { 
         event.preventDefault()
-
-        const {displayName,email, password, confirmPassword} = this.state
-        const {signUpStart} =this.props
         if (password !== confirmPassword){
         alert("passwords don't match")
         
         return
     }
     signUpStart({email, password, displayName})
-    /*
-    try{
-
-       const {user} = await auth.createUserWithEmailAndPassword(email,password)  //hover over to see fx
-
-       await createUserProfileDocument(user, {displayName})   //we are creating a new user in the db
-
-       this.setState({email: "" , password: "", displayName: "", confirmPassword: "", phoneNumber: ""})
-
-    }
-    catch(err){
-        console.log(err)
-
-    }*/
-        
+    
         
      }
 
-     handleChange = event => {
+    const handleChange = event => {
          const {value, name} = event.target
-         this.setState({[name]: value})
+         setCredentials({...userCredentials, [name]: value})
      }
-
-
-    render()
-    {
-        //const {signUpStartProp} = this.props
+     
+     
         return (
             <div className = "sign-up">
                 <h2 className= "title">Don't have an account yet ?</h2>
                 <span>Sign up for new account.</span>
 
-                <form onSubmit = {this.handleSubmit}>
+                <form onSubmit = {handleSubmit}>
                 <FormInput name = "displayName"
-                     value ={this.state.displayName} 
+                     value ={displayName} 
                      type="text" 
-                     handleChange = {this.handleChange}
+                     handleChange = {handleChange}
                      autoComplete = "on"
                      label = 'Full Name'
                       required />
 
                     <FormInput name = "email"
-                     value ={this.state.email} 
+                     value ={email} 
                      type="email" 
-                     handleChange = {this.handleChange}
+                     handleChange = {handleChange}
                      autoComplete = "on"
                      label = 'Email'
                       required />
@@ -86,24 +57,24 @@ class SignUp extends React.Component {
 
                     <FormInput type="password"
                      name = "password" 
-                     value = {this.state.password} 
+                     value = {password} 
                      autoComplete = "off"
-                     handleChange = {this.handleChange}
+                     handleChange = {handleChange}
                      label = "Password"
                       required />
 
                       <FormInput name = "confirmPassword"
-                     value ={this.state.confirmPassword} 
+                     value ={confirmPassword} 
                      type="password" 
-                     handleChange = {this.handleChange}
+                     handleChange = {handleChange}
                      autoComplete = "on"
                      label = 'Confirm Password'
                       required />
 
                       <FormInput name = "phoneNumber"
-                     value ={this.state.phoneNumber} 
+                     value ={phoneNumber} 
                      type="phone" 
-                     handleChange = {this.handleChange}
+                     handleChange = {handleChange}
                      autoComplete = "on"
                      label = 'Mobile Number'
                        />
@@ -117,10 +88,26 @@ class SignUp extends React.Component {
             </div>
         )//used onClick mehtod to call signinwithgoogle fx from other folder
     }  //used </CustomButton> bcz wanna use the children prop of that in custom button comp.
-}  //so by default isgooglesignin will pass the true value to the custom button
+ //so by default isgooglesignin will pass the true value to the custom button
 
 const mapDispatchToProps = dispatch => ({
     signUpStart : (userCredentials) => dispatch(signUpStart(userCredentials))
 })
 
 export default connect(null, mapDispatchToProps)(SignUp)
+
+/*
+    try{
+
+       const {user} = await auth.createUserWithEmailAndPassword(email,password)  //hover over to see fx
+
+       await createUserProfileDocu.ment(user, {displayName})   //we are creating a new user in the db
+
+       this.setState({email: "" , password: "", displayName: "", confirmPassword: "", phoneNumber: ""})
+
+    }
+    catch(err){
+        console.log(err)
+
+    }*/
+        
