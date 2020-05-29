@@ -20,14 +20,12 @@ const SignIn = ({emailSignInStart, googleSignInStart}) => {
      const handleSubmit = event => {   //didn't get why this method defined outside the construcotr and has obj destructuring 
       event.preventDefault()     
       emailSignInStart(email,password) 
-      }
-   
+      }      
 
      const handleChange = (event) => {
          const {value, name} = event.target
          setCredentials({...userCredentials, [name]: value})
      }
-
         return (
             <div className = "sign-in">
                 <h2>I already have an account</h2>

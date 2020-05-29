@@ -10,8 +10,9 @@ import { Route } from "react-router-dom"
 import {connect} from "react-redux"
 
 import {fetchCollectionsStart} from "../../redux/shop/shop.actions"
-import CollectionsOverviewContainer from "../../components/collections-overview/collection-overview.container"
+//import CollectionsOverviewContainer from "../../components/collections-overview/collection-overview.container"
 import CollectionPageContainer from "../../components/collectionPage/collectionPage.container"
+import SearchBox from "../../components/search/search.component"
 
 //const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview)
 //const CollectionPage1WithSpninner = WithSpinner(CollectionPage1)
@@ -34,7 +35,10 @@ const ShopPage = ({fetchCollectionsStart, match}) =>  {
       
       return(     
          <div className = "shop-page">
-            <Route exact path = {`${match.path}`} component = {CollectionsOverviewContainer}  />
+
+           <Route exact path = {`${match.path}`} component = {SearchBox}  />
+          
+            
             <Route path = {`${match.path}/:categoryId`} component = {CollectionPageContainer}/>      
          </div> )  //if collection is null, seletor pass false, so we wanna pass true to withspiiner to start spinning, otherwise false if collecton is object
    } 
@@ -49,3 +53,5 @@ const mapDispatchToProps = dispatch => ({
 
 
  export default connect(null, mapDispatchToProps) (ShopPage)
+
+ //*  <Route exact path = {`${match.path}`} component = {CollectionsOverviewContainer}  />*/

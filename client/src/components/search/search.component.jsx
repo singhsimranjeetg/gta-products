@@ -1,41 +1,59 @@
-/*import React from "react"
+import React from "react"
 import "./search.styles.scss"
 
 import {connect} from "react-redux"
 import {createStructuredSelector} from "reselect"
-import {selectCollections} from "../../redux/shop/shop.selector"
-import CollectionsOverview from "../collections-overview/collections-overview.component"
+import {selectCollectionsForPreview} from "../../redux/shop/shop.selector"
+import CollectionsOverviewContainer from "../collections-overview/collection-overview.container"
 
 
-const SearchBox = ({collection}) => {
- 
+class SearchBox extends React.Component {
+
+    constructor(props){
+        super(props)
+        this.state = {
+            searchField: "",
+            
+            
+
+        }
+       
+    }
+    //const [searchState, setCollections] = useState({searchField : "", filteredItems: []})
     
-return(
-        
+   /*const {searchField, filteredItems} = searchState
 
+     handleChange = (e, fitems, searchFiel) => {
+ 
+        searchFiel = searchFiel + e.target.value
+        console.log(searchFiel)
+        console.log(filteredItems);
+        setCollections({filteredItems : fitems, searchField: searchFiel }) }*/
+
+   
+   render(){
+    const {collection} = this.props
+     const {searchField} = this.state
+     console.log(searchField)
+     const filteredItem = collection.filter(item =>
+        item.title.toLowerCase().includes(searchField.toLowerCase()));
+        console.log(filteredItem)
+        
+   
+return(     
     <div className = "search">
         <input type="search"
-        placeholder = "search Items"
-        onChange = {(e, filteredItems) => {
-            
-            let searchField = ""
-            searchField = searchField + e.target.value
-            console.log(searchField) 
-            
-  
-            filteredItems = collection.filter(item =>
-                 item.title.toLowerCase().includes(searchField.toLowerCase()));
-    
-            console.log(filteredItems);        
-            
-        }} />
-        <CollectionsOverview collections = {collection} />      
+        placeholder = "Search Items"
+        onChange = {e => this.setState({searchField: e.target.value}
+            )}             
+        />
+         <CollectionsOverviewContainer collections = {filteredItem} />     
     </div>
   
-)}
+)}}
 
 const mapStateToProps = createStructuredSelector({
-    collection : selectCollections
+    collection : selectCollectionsForPreview
 })
 
 export default connect(mapStateToProps)(SearchBox)
