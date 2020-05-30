@@ -12,7 +12,8 @@ import {connect} from "react-redux"
 import {fetchCollectionsStart} from "../../redux/shop/shop.actions"
 //import CollectionsOverviewContainer from "../../components/collections-overview/collection-overview.container"
 import CollectionPageContainer from "../../components/collectionPage/collectionPage.container"
-import SearchBox from "../../components/search/search.component"
+import ShopPageWithSearch from "../../components/search/search.component"
+//import collectionPageWithSearch from "../../components/collectionPageWithSearch/collectionPageWithSearch.component"
 
 //const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview)
 //const CollectionPage1WithSpninner = WithSpinner(CollectionPage1)
@@ -36,7 +37,7 @@ const ShopPage = ({fetchCollectionsStart, match}) =>  {
       return(     
          <div className = "shop-page">
 
-           <Route exact path = {`${match.path}`} component = {SearchBox}  />
+           <Route exact path = {`${match.path}`} component = {ShopPageWithSearch}  />
           
             
             <Route path = {`${match.path}/:categoryId`} component = {CollectionPageContainer}/>      

@@ -1,13 +1,13 @@
 import React from "react"
-import "./search.styles.scss"
+//import "./search.styles.scss"
 
 import {connect} from "react-redux"
 //import {createStructuredSelector} from "reselect"
-import {selectCollectionsForPreview} from "../../redux/shop/shop.selector"
-import CollectionsOverviewContainer from "../collections-overview/collection-overview.container"
+import {selectCollection} from "../../redux/shop/shop.selector"
+import CollectionPageContainer from "../collectionPage/collectionPage.container"
 
 
-class ShopPageWithSearch extends React.Component {
+class CollectionPageWithSearch extends React.Component {
 
     constructor(props){
         super(props)
@@ -32,10 +32,11 @@ class ShopPageWithSearch extends React.Component {
 
    
    render(){
-    const {collectionForShopPage} = this.props
+    const {itemsForCollectionPage} = this.props
+    const {items} = itemsForCollectionPage
      const {searchField} = this.state
      console.log(searchField)
-     const filteredItem = collectionForShopPage.filter(item =>
+     const filteredItem = items.filter(item =>
         item.title.toLowerCase().includes(searchField.toLowerCase()));
         console.log(filteredItem)
         
@@ -47,13 +48,13 @@ return(
         onChange = {e => this.setState({searchField: e.target.value}
             )}             
         />
-         <CollectionsOverviewContainer collections = {filteredItem} />     
+         <CollectionPageContainer collection = {filteredItem} />     
     </div>
   
 )}}
 
-const mapStateToProps = (state) => ({
-    collectionForShopPage : selectCollectionsForPreview(state)
+const mapStateToProps = (state,ownProps) => ({
+    itemsForCollectionPage :selectCollection(ownProps.match.params.categoryId)(state)
 })
 
-export default connect(mapStateToProps)(ShopPageWithSearch)
+export default connect(mapStateToProps)(CollectionPageWithSearch)

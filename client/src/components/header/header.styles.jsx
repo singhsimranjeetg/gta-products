@@ -35,9 +35,10 @@ export const OptionLink = styled(Link) `
         cursor: pointer;
         &:hover {
                  
-                 font-weight: bold;
-                 color : white;   //added by me all styles
+                 //font-weight: bold;
+                 color : white;   //added by me all styles 
                  transition: all .3s;
+               //  text-decoration: wavy;
                }
 
 `
