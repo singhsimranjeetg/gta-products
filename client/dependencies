@@ -8,3 +8,4 @@ yarn add react-stripe-checkout for stripe payments
 yarn add styled-components for solving the shared css issue.
 yarn add redux-thunk added for handling multiple async events and actions
 yarn add redux-saga for using handling async actions in redux(replacing thunk)
+yarn add react-slideshow-image 

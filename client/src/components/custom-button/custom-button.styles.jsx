@@ -8,14 +8,14 @@ export const getButtonStyles = (props) => {
 }
 
 export const buttonStyles = css `
-background-color: black;
+background-color: #1FAD66;
 color: white;
 border: none;
 
 &:hover {
-    background-color: white;
-    color: black;
-    border: 1px solid black;
+    background-color: #13d373;
+    //color: black;
+    border: 0.1px solid black;
   }
 
 `
@@ -48,9 +48,9 @@ border: 1px solid black;
 font-size: 1vw;
 
 &:hover {
-  background-color: black;
+  background-color: #1FAD66;
   color: white;
-  border: none;
+ // border: none;
 }
 `
 

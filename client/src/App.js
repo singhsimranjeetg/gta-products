@@ -13,11 +13,12 @@ import {connect} from "react-redux"
 import {selectCurrentUser} from "./redux/user/user.selectors"
 import {createStructuredSelector} from "reselect"
 import ContactPage from './pages/contactPage/contactPage.component';
+//import Slideshow from "./components/image-slideshow/imageSlideshow.component"
 
 import {checkUserSession} from "./redux/user/users.actions"
 
-//import {selectCollectionsForPreview } from "./redux/shop/shop.selector"
 
+//import {selectCollectionsForPreview } from "./redux/shop/shop.selector"
 
 const App = ({checkUserSession, currentUser}) =>  { 
 
@@ -31,9 +32,9 @@ const App = ({checkUserSession, currentUser}) =>  {
    return (  
    //using reducer to pass the props in the header comp
     <div className="App">
-      <Header  />     
-    
-      <h4>GTA PRODUCTS </h4>
+      <Header  /> 
+      
+      
     
       <Switch>
       <Route  path = "/checkout" component = {Checkout} />
