@@ -13,10 +13,6 @@ import {fetchCollectionsStart} from "../../redux/shop/shop.actions"
 //import CollectionsOverviewContainer from "../../components/collections-overview/collection-overview.container"
 import CollectionPageContainer from "../../components/collectionPage/collectionPage.container"
 import ShopPageWithSearch from "../../components/search/search.component"
-//import collectionPageWithSearch from "../../components/collectionPageWithSearch/collectionPageWithSearch.component"
-
-//const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview)
-//const CollectionPage1WithSpninner = WithSpinner(CollectionPage1)
 
 
 
@@ -33,14 +29,13 @@ const ShopPage = ({fetchCollectionsStart, match}) =>  {
    useEffect(() => {
       fetchCollectionsStart()
    },[fetchCollectionsStart])
-      
+      console.log(match)
       return(     
          <div className = "shop-page">
 
-           <Route exact path = {`${match.path}`} component = {ShopPageWithSearch}  />
-          
-            
-            <Route path = {`${match.path}/:categoryId`} component = {CollectionPageContainer}/>      
+           <Route exact path = {`${match.path}`} component = {ShopPageWithSearch}  />      
+            <Route path = {`${match.path}/:categoryId`} component = {CollectionPageContainer} />  
+             
          </div> )  //if collection is null, seletor pass false, so we wanna pass true to withspiiner to start spinning, otherwise false if collecton is object
    } 
 

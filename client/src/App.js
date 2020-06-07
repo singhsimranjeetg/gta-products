@@ -13,6 +13,7 @@ import {connect} from "react-redux"
 import {selectCurrentUser} from "./redux/user/user.selectors"
 import {createStructuredSelector} from "reselect"
 import ContactPage from './pages/contactPage/contactPage.component';
+import ProductPage from "./pages/product-page/productPage.component"
 //import Slideshow from "./components/image-slideshow/imageSlideshow.component"
 
 import {checkUserSession} from "./redux/user/users.actions"
@@ -41,6 +42,8 @@ const App = ({checkUserSession, currentUser}) =>  {
       <Route exact  path = "/" component = {HomePage}  />
      <Route path = "/shop" component = {ShopPage} />
      <Route path = "/contact" component = {ContactPage} />
+     <Route path = "/product/:productId" component = {ProductPage} />   
+    
      
      <Route exact path = "/signin" render = {() =>
        currentUser ? (<Redirect to = "/"/>) 

@@ -4,7 +4,12 @@ import {withRouter} from "react-router-dom"  //higher order comp, takes comp as 
 
 import "./menu-item.styles.scss"
 
-const MenuItem = ({ title, imageUrl, size, history, match, linkUrl }) => (
+const MenuItem = ({ title, imageUrl, size, history, match, linkUrl }) =>  {
+
+
+  console.log(match)
+ // console.log(history)
+  return(
     <div className={`${size} menu-item`}
      onClick = {() => history.push(`${match.url}${linkUrl}`)}     
      >
@@ -24,6 +29,12 @@ const MenuItem = ({ title, imageUrl, size, history, match, linkUrl }) => (
     
   
 )
+
+
+
+}
+
+
 
 
 //withRouter will return us super powered comp that has access to props like history, that otherwise possible only in homepage 

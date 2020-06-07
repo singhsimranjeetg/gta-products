@@ -23,7 +23,7 @@ class CollectionPage1 extends React.Component {
      const {collection} = this.props
      const {title, items} = collection   
      const {searchField} = this.state
-     console.log(searchField)
+    // console.log(searchField)
      const filteredItem = items.filter(item => 
         item.name.toLowerCase().includes(searchField.toLowerCase()));
         console.log(filteredItem)

@@ -14,8 +14,6 @@ class ShopPageWithSearch extends React.Component {
         this.state = {
             searchField: "",
             
-            
-
         }
        
     }
