@@ -1,25 +1,26 @@
-import React, {useEffect} from 'react';
-import HomePage from "./pages/homepage/homepage.component"
-import './App.css';
+import React, {useEffect, lazy, Suspense } from 'react';
+
+import {GlobalStyle} from "./global.styles"
 import {Switch, Route, Redirect} from "react-router-dom";
-import ShopPage from "./pages/shop/shop.component"
-import Checkout from "./pages/checkout/checkoutpage/checkout.component"
 
 import Header from  "./components/header/header.component"
-import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component"
-//import {auth, createUserProfileDocument} from "./firebase/firebase.utils"
+import Spinner from "./components/spinner/spinner.component"
+import ErrorBoundary from "./components/error-boundary/error-boundary.component"
+
 import {connect} from "react-redux"
-//import {setCurrentUser} from "./redux/user/users.actions"
 import {selectCurrentUser} from "./redux/user/user.selectors"
 import {createStructuredSelector} from "reselect"
-import ContactPage from './pages/contactPage/contactPage.component';
-import ProductPage from "./pages/product-page/productPage.component"
-//import Slideshow from "./components/image-slideshow/imageSlideshow.component"
 
 import {checkUserSession} from "./redux/user/users.actions"
 
 
-//import {selectCollectionsForPreview } from "./redux/shop/shop.selector"
+
+const HomePage = lazy(() => import('./pages/homepage/homepage.component') )
+const ShopPage = lazy( () => import('./pages/shop/shop.component') )
+const ContactPage = lazy( () => import('./pages/contactPage/contactPage.component') )
+const ProductPage = lazy( () => import('./pages/product-page/productPage.component') )
+const SignInAndSignUpPage = lazy( () => import('./pages/sign-in-and-sign-up/sign-in-and-sign-up.component') )
+const Checkout = lazy( () => import('./pages/checkout/checkoutpage/checkout.component') )
 
 const App = ({checkUserSession, currentUser}) =>  { 
 
@@ -32,24 +33,27 @@ const App = ({checkUserSession, currentUser}) =>  {
     // doesnt work-  const {currentUser} = this.state    <h2>Welcome to {this.state.currentUser.DisplayNam}</h2>
    return (  
    //using reducer to pass the props in the header comp
-    <div className="App">
+    <div>
+      <GlobalStyle />
       <Header  /> 
       
       
     
-      <Switch>
+  <Switch>
+    <ErrorBoundary>
+    <Suspense fallback = {<Spinner/>} >
       <Route  path = "/checkout" component = {Checkout} />
-      <Route exact  path = "/" component = {HomePage}  />
+      <Route exact  path = "/" component = {HomePage}  /> 
      <Route path = "/shop" component = {ShopPage} />
      <Route path = "/contact" component = {ContactPage} />
-     <Route path = "/product/:productId" component = {ProductPage} />   
-    
-     
+     <Route path = "/product/:productId" component = {ProductPage} />    
      <Route exact path = "/signin" render = {() =>
        currentUser ? (<Redirect to = "/"/>) 
        : (<SignInAndSignUpPage />) }/>
-      </Switch>
-      
+    </Suspense>
+    </ErrorBoundary>
+  </Switch>
+    
     </div>
   );  
 }  

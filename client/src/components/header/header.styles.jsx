@@ -11,12 +11,24 @@ justify-content: space-between;
 margin-bottom: 25px;       
 background-color: #1fad66;  
 
+@media screen and (max-width: 800px) {
+      height: 60px;
+      padding: 10px;
+      margin-bottom: 20px;
+
+  }
 
 `
 export const LogoContainer = styled(Link)`
       height: 100%;
       width: 70px;
       padding: 15px;
+
+      @media screen and (max-width: 800px) {
+            width: 50px;
+            padding: 0px;
+            //margin: 0px 0px 10px 0px;
+        }
 `
 
 export const OptionsContainer = styled.div `
@@ -25,7 +37,13 @@ export const OptionsContainer = styled.div `
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      margin-right: 15px;    
+      margin-right: 15px;  
+      
+      @media screen and (max-width: 800px) {
+            width: 80%;
+            margin-left: 30px;
+
+        }
  
 
 

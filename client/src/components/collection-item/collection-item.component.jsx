@@ -9,18 +9,19 @@ import { withRouter } from 'react-router-dom';
 //
 
 
-const CollectionItem = ({ item, addItem, history, match}) => {
+const CollectionItem = ({ item, addItem, history}) => {
   const {imageUrl, price, name, id} = item   //now we are getting those prop of item obj passed from the preview collection
 
-  //console.log(match)
+  console.log((item))
   return (
-  <div className='collection-item' onClick = {() => history.push(`/product/${id}`)}>
+  <div className='collection-item' >
     
     <div
       className='image' 
       style={{
         backgroundImage: `url(${imageUrl})`
       }}
+      onClick = {() => history.push(`/product/${id}`)}
       
     />
     
@@ -28,7 +29,7 @@ const CollectionItem = ({ item, addItem, history, match}) => {
       <span className='name'>{name}</span>
       <span className='price'>${price}</span>
     </div>
-    <CustomButton inverted onClick = { () => addItem(item) } className = "custom-button"  >Add to cart</CustomButton>
+    <CustomButton inverted className = "custom-button" onClick = { () => addItem(item) } >Add to cart</CustomButton>
     
   </div>
   

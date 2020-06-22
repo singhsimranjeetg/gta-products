@@ -7,7 +7,7 @@ import "./menu-item.styles.scss"
 const MenuItem = ({ title, imageUrl, size, history, match, linkUrl }) =>  {
 
 
-  console.log(match)
+  //console.log(match)
  // console.log(history)
   return(
     <div className={`${size} menu-item`}
@@ -21,9 +21,7 @@ const MenuItem = ({ title, imageUrl, size, history, match, linkUrl }) =>  {
       />
       <div className='content'>
         <div className='title'>{title.toUpperCase()}</div>   
-          <span className='subtitle'>SHOP NOW</span>
-          
-         
+          <span className='subtitl'>SHOP</span>            
     </div>
       </div>
     

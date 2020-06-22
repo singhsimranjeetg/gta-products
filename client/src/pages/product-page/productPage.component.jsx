@@ -17,9 +17,10 @@ const ProductPage = ({fetchCollectionsStartNow,collection, match}) => {
 
      
         
-         const productid =  match.params.productId 
-         console.log(productid)  
-        const item1 = collection.map(item => item.items.find(item2 => item2.id == productid ))
+         let productid =  match.params.productId 
+        // parseInt(productid, 10)
+        // console.log(typeof(productid))  
+        const item1 = collection.map(item => item.items.find(item2 => item2.id === Number(productid)))
         const item3 = item1.filter(item =>  item !== undefined)
         // const finalItem = item1.map(item => item.find(item2 => item2.id === 24))
          console.log(item1)
@@ -30,7 +31,7 @@ const ProductPage = ({fetchCollectionsStartNow,collection, match}) => {
       
 return(
     <div className='collection-item'> 
-    <h1>HELLO !!!!</h1>
+    
     {
                item3.map(item => (
                    <ProductComponent key = {item.id} item = {item} />

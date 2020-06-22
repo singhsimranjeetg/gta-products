@@ -9,7 +9,7 @@
   
     .image {
       width: 100%;
-      height: 95%;     //iamge height is 95% of the item, because 5 % is given to footer for name and price
+      height: 92%;     //iamge height is 95% of the item, because 5 % is given to footer for name and price
       background-size: cover;
       background-position: center;
       margin-bottom: 5px;
@@ -22,7 +22,16 @@
       position: absolute;
       top: 255px ;
       display: none;
+
+            
+      @media screen and (max-width: 800px) {
+        display: block;
+        opacity: 0.9;
+        min-width: unset;
+        padding: 0 10px;
+       // font-size: 10px;
     }
+  }
       &:hover{
 
         .custom-button{
@@ -35,12 +44,26 @@
         }
       }
       
+      @media screen and (max-width: 800px) {
+        width: 40vw;
+
+        &:hover{
+
+          .custom-button{
+            opacity: unset;
+          }
+  
+          .image {
+            opacity: unset;
+          }
+        }
+    }
 
     
   
     .collection-footer {
       width: 100%;
-      height: 5%;
+      height: 8%;
       display: flex;
       justify-content: space-between;
       font-size: 18px;

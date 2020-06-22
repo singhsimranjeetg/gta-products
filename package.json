@@ -20,6 +20,7 @@
     "dotenv": "7.0.0",
     "express": "^4.16.4",
     "react-slideshow-image": "^1.5.3",
+    "react-star-ratings": "^2.3.0",
     "stripe": "6.28.0"
   },
   "devDependencies": {

@@ -1,46 +1,39 @@
-//because we gonna store data for our collection items here, 
-//we need state mathod, so we are using class component here.
+import React, {useEffect, lazy, Suspense} from "react"
 
-import React, {useEffect} from "react"
 import "./shop.styles.scss"
-//import CollectionsOverview from "../../components/collections-overview/collections-overview.component"
-import { Route } from "react-router-dom"
-//import CollectionPage1 from "../../components/collectionPage/collectionPage.component"
 
+import { Route } from "react-router-dom"
 import {connect} from "react-redux"
 
 import {fetchCollectionsStart} from "../../redux/shop/shop.actions"
-//import CollectionsOverviewContainer from "../../components/collections-overview/collection-overview.container"
-import CollectionPageContainer from "../../components/collectionPage/collectionPage.container"
-import ShopPageWithSearch from "../../components/search/search.component"
+
+import Spinner from "../../components/spinner/spinner.component"
+import ErrorBoundary from "../../components/error-boundary/error-boundary.component"
 
 
 
-
-//class ShopPage extends React.Component{ dont need class component bcz no use of state here
+const CollectionPageContainer = lazy( () => import('../../components/collectionPage/collectionPage.container') )
+const ShopPageWithSearch = lazy( () => import('../../components/search/search.component') )
 
 const ShopPage = ({fetchCollectionsStart, match}) =>  {
 
-/*componentDidMount(){
-   const {fetchCollectionsStart} = this.props
-   fetchCollectionsStart()
-}
-   render() { */
    useEffect(() => {
       fetchCollectionsStart()
    },[fetchCollectionsStart])
-      console.log(match)
-      return(     
+      //console.log(match)
+     // throw Error
+      return(  
+           
          <div className = "shop-page">
-
-           <Route exact path = {`${match.path}`} component = {ShopPageWithSearch}  />      
+         <ErrorBoundary>
+         <Suspense fallback = {<Spinner />} >
+            <Route exact path = {`${match.path}`} component = {ShopPageWithSearch}  />      
             <Route path = {`${match.path}/:categoryId`} component = {CollectionPageContainer} />  
-             
-         </div> )  //if collection is null, seletor pass false, so we wanna pass true to withspiiner to start spinning, otherwise false if collecton is object
-   } 
+         </Suspense> 
+         </ErrorBoundary>       
+         </div>
+          )  }
 
-
- 
 
 const mapDispatchToProps = dispatch => ({
    fetchCollectionsStart : () => dispatch(fetchCollectionsStart())
@@ -50,4 +43,16 @@ const mapDispatchToProps = dispatch => ({
 
  export default connect(null, mapDispatchToProps) (ShopPage)
 
- //*  <Route exact path = {`${match.path}`} component = {CollectionsOverviewContainer}  />*/
+ //*  <Route exact path = {`${match.path}`} component = {CollectionsOverviewContainer}  />
+ /*componentDidMount(){
+   const {fetchCollectionsStart} = this.props
+   fetchCollectionsStart()
+}
+   render() { 
+      
+      //if collection is null, seletor pass false, so we wanna pass true to withspiiner to start spinning, otherwise false if collecton is object
+   } 
+      
+      */
+ 
+ 
