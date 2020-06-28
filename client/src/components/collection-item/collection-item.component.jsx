@@ -12,7 +12,7 @@ import { withRouter } from 'react-router-dom';
 const CollectionItem = ({ item, addItem, history}) => {
   const {imageUrl, price, name, id} = item   //now we are getting those prop of item obj passed from the preview collection
 
-  console.log((item))
+  //console.log((item))
   return (
   <div className='collection-item' >
     

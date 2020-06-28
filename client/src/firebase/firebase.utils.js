@@ -90,7 +90,7 @@ export const createUserMessages = async (messageInfo, additionalData) => {
 //function to make new collections and documents 
  export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
    const collectionRef = firestore.collection(collectionKey)
-   console.log(collectionRef)
+   //console.log(collectionRef)
 
    const batch = firestore.batch()    //forEach is similar to the map method excepts it doesnt return a new array.
    objectsToAdd.forEach(obj => {

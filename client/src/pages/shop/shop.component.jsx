@@ -1,4 +1,4 @@
-import React, {useEffect, lazy, Suspense} from "react"
+import React, {useEffect, lazy, Suspense, Profiler} from "react"
 
 import "./shop.styles.scss"
 
@@ -27,8 +27,16 @@ const ShopPage = ({fetchCollectionsStart, match}) =>  {
          <div className = "shop-page">
          <ErrorBoundary>
          <Suspense fallback = {<Spinner />} >
+            <Profiler id = "ShopPage" onRender = {(id, phase, actualduration)  => {
+               console.log({
+                  id,
+                  phase,
+                  actualduration
+               })
+            }}>
             <Route exact path = {`${match.path}`} component = {ShopPageWithSearch}  />      
-            <Route path = {`${match.path}/:categoryId`} component = {CollectionPageContainer} />  
+            <Route path = {`${match.path}/:categoryId`} component = {CollectionPageContainer} /> 
+            </Profiler>    
          </Suspense> 
          </ErrorBoundary>       
          </div>

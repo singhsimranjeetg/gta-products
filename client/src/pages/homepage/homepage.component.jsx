@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Profiler} from 'react';
 
 
 //import './homepage.styles.scss';
@@ -13,7 +13,19 @@ const HomePage = () => {
   return(
     <HomePageStyle>
       <Slideshow />
+      <Profiler id = "Directory and Slideshow" onRender = {(id, phase, actualDuration) => {
+        console.log({
+          id,
+          phase,
+          actualDuration
+        })
+      }}>
+      
       <Directory />
+      
+      </Profiler>
+      
+      
 
     </HomePageStyle>
     

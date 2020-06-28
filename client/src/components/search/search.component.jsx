@@ -32,10 +32,10 @@ class ShopPageWithSearch extends React.Component {
    render(){
     const {collectionForShopPage} = this.props
      const {searchField} = this.state
-     console.log(searchField)
+     //console.log(searchField)
      const filteredItem = collectionForShopPage.filter(item => 
         item.title.toLowerCase().includes(searchField.toLowerCase()));
-        console.log(filteredItem)
+        //console.log(filteredItem)
         
    
 return(     
