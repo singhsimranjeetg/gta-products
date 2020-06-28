@@ -8,6 +8,8 @@ import {Provider} from "react-redux"
 import {PersistGate} from "redux-persist/integration/react"
 import {store, persistor } from "./redux/store"
 
+import * as serviceWorker from "./serviceWorker"
+
 ReactDOM.render(  //browserrouter is a comonent that gives all the routing functionality to the comp in it
   <Provider store = {store} > 
   <BrowserRouter>     
@@ -20,4 +22,6 @@ ReactDOM.render(  //browserrouter is a comonent that gives all the routing funct
   document.getElementById('root')
 );
 //deleted service worrker code bcz we dont need that.
+
+serviceWorker.register(); //register service worker inside our app.
 
