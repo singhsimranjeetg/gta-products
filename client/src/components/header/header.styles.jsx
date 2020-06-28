@@ -9,7 +9,7 @@ width: 100%;
 display: flex;
 justify-content: space-between;
 margin-bottom: 25px;       
-background-color: #1fad66;  
+background-color:  #1fad66 ;  
 
 @media screen and (max-width: 800px) {
       height: 60px;
@@ -51,13 +51,18 @@ export const OptionsContainer = styled.div `
 export const OptionLink = styled(Link) `
         padding: 10px 15px;
         cursor: pointer;
-        &:hover {
-                 
-                 //font-weight: bold;
-                 color : white;   //added by me all styles 
-                 transition: all .3s;
-               //  text-decoration: wavy;
+
+        @media screen and (max-width: 450px) {
+            padding: 10px 5px;
+
+        }
+
+        &:hover {     
+                 color : white;  
+                 transition: all .3s; 
                }
+
+               
 
 `
 /*
