@@ -1,19 +1,20 @@
 import React from 'react';
 import { Zoom } from 'react-slideshow-image';
 import "./imageSlideshow.styles.scss"
- 
+
 const images = [
-  'https://images.unsplash.com/reserve/tdedkQnQGCgIhk9eoEkP_DSC_0983.JPG?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60.jpg',
-  'https://images.unsplash.com/29/night-square.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60.jpg',
-  'https://images.unsplash.com/photo-1430132594682-16e1185b17c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60.jpg',
+  "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+  "https://www.geburtszeit.com/wp-content/uploads/2018/11/cecbe6fc3cb504ede43c50f38f21f328.jpeg"
+  
+
  
 ];
  
 const zoomOutProperties = {
-  duration: 5000,
-  transitionDuration: 500,
+  duration: 15000,
+  transitionDuration: 1000,
   infinite: true,
-  indicators: true,
+  indicators: false,
   scale: 0.4,
   arrows: false,
   pauseOnHover: true,

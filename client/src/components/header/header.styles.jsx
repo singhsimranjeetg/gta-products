@@ -8,8 +8,7 @@ height: 70px;
 width: 100%;
 display: flex;
 justify-content: space-between;
-margin-bottom: 25px;       
-background-color:  #1fad66 ;  
+margin-bottom: 25px;         
 
 @media screen and (max-width: 800px) {
       height: 60px;
@@ -58,7 +57,7 @@ export const OptionLink = styled(Link) `
         }
 
         &:hover {     
-                 color : white;  
+                 color : #bbb;  
                  transition: all .3s; 
                }
 

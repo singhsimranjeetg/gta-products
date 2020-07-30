@@ -40,12 +40,14 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     if(!snapShot.exists) {    //in order to get see data, we have to use .data() mathod on snapshot
         const {displayName, email} = userAuth
         const createdAt = new Date()
+        //const userCartItems = 8
 
         try {                      //create a new user obj in db if not already exists 
             await userRef.set({
                 displayName,
                 email,
                 createdAt,
+               // userCartItems,
                 ...additionalData
                           })
         }
@@ -55,15 +57,36 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     }
     return userRef
 }
-//creating new user in db finished***********
+//creating new user in db finished//////////////////////////
+
+////////////////////////////////////////////////////////////
+////////////CREATE CART DOCS START
+
+export const getUserCartRef = async userId => {
+  const cartsRef = firestore.collection('carts').where('userId', '==', userId);
+  const snapShot = await cartsRef.get();
+  
+    console.log(snapShot)
+    console.log(cartsRef)
+
+  if (snapShot.empty) {
+    const cartDocRef = firestore.collection('carts').doc();
+    await cartDocRef.set({ userId, ItemsInCart: [] });   
+    return cartDocRef;
+  } else {
+    return snapShot.docs[0].ref;
+  }
+};
+
+//////////////////////////////////////////////////////////////
+/////////////////CREATE CART ENDS
+
 
 
 //storing user messages in firestore  ###############
 
 export const createUserMessages = async (messageInfo, additionalData) => {
   const messageRef = firestore.collection(`messages`).doc()
-  
-
   const {senderName, email, message} = messageInfo
   
   const createdAt = new Date()

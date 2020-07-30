@@ -4,6 +4,7 @@ import {GlobalStyle} from "./global.styles"
 import {Switch, Route, Redirect} from "react-router-dom";
 
 import Header from  "./components/header/header.component"
+import Footer from "./components/footer/footer.component"
 import Spinner from "./components/spinner/spinner.component"
 import ErrorBoundary from "./components/error-boundary/error-boundary.component"
 
@@ -21,6 +22,7 @@ const ContactPage = lazy( () => import('./pages/contactPage/contactPage.componen
 const ProductPage = lazy( () => import('./pages/product-page/productPage.component') )
 const SignInAndSignUpPage = lazy( () => import('./pages/sign-in-and-sign-up/sign-in-and-sign-up.component') )
 const Checkout = lazy( () => import('./pages/checkout/checkoutpage/checkout.component') )
+//const Footer = lazy(() => import("./components/footer/footer.component") )
 
 const App = ({checkUserSession, currentUser}) =>  { 
 
@@ -35,7 +37,8 @@ const App = ({checkUserSession, currentUser}) =>  {
    //using reducer to pass the props in the header comp
     <div>
       <GlobalStyle />
-      <Header  /> 
+      <Header  />
+       
       
       
     
@@ -53,6 +56,7 @@ const App = ({checkUserSession, currentUser}) =>  {
     </Suspense>
     </ErrorBoundary>
   </Switch>
+  <Footer />
     
     </div>
   );  

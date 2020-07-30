@@ -14,7 +14,7 @@ const CartDropdown = ({cartItems, history, dispatch}) => (   //with mapsatetopro
                                                             //that is equivalennt to mapdispatchtoprops
     <div className = "cart-dropdown">
         <div className = "cart-items">
-            {
+            { 
              cartItems.length ? 
                 cartItems.map(cartItem => (
               <CartItem key = {cartItem.id} item = {cartItem} />

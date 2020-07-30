@@ -25,7 +25,7 @@ const ContactPage = () => {
    
     try{
       await createUserMessages(useCredentials)
-      setCredentials({email: "" , senderName: "", message: "", responseMessage: "Message Sent ! Our team will contact you as soon as possible "})
+      setCredentials({email: "" , senderName: "", message: "", responseMessage: "Message Sent, Our team will contact you as soon as possible "})
    
    
     }catch(error){
@@ -72,8 +72,6 @@ const ContactPage = () => {
 
                     <h3>{responseMessage}</h3>
 
-                     
-    
                     <CustomButton  type="submit" >SEND
                         </CustomButton>
                         </FormOptions>

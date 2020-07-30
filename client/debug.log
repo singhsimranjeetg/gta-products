@@ -1,1 +1,9 @@
 [0627/161304.816:ERROR:file_io.cc(134)] WriteFile: The pipe is being closed. (0xE8)
+[0629/082135.313:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0629/082135.292:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0629/082135.335:ERROR:exception_snapshot_win.cc(98)] thread ID 16288 not found in process
+[0629/082135.482:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0629/082135.482:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0629/082135.482:ERROR:exception_snapshot_win.cc(98)] thread ID 16568 not found in process
+[0629/082135.332:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0629/082135.576:ERROR:exception_snapshot_win.cc(98)] thread ID 21528 not found in process

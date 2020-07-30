@@ -68,6 +68,18 @@ export const SignUpFailure = (error) => ({
     payload: error
     
 })
+/*
+export const PullUserCartItems = (ItemsInCart) => ({    //for signin
+    type: userActionTypes.PULL_USER_CART_ITEMS,
+    payload: ItemsInCart
+})
+
+export const PushUserCartItems = (ItemsInCart) => ({        //for signout 
+    type: userActionTypes.PUSH_USER_CART_ITEMS,
+    payload: ItemsInCart
+})*/
+
+
 
 
 

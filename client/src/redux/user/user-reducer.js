@@ -2,7 +2,8 @@ import {userActionTypes} from "./user.types"
 
 const INITIAL_STATE = {
     currentUser: null,
-    error: null
+    error: null,
+    //userCartItems: []
 }
 
 //NOTE: each reducer get the action we ever get fired, even though its not related
@@ -24,17 +25,21 @@ const userReducer = (state = INITIAL_STATE, action) => {
             case userActionTypes.SIGNIN_FAILURE:    //if ever the set current user action gets fired 
             case userActionTypes.SIGN_OUT_FAILURE:
             case userActionTypes.SIGNUP_FAILURE:
-              return{
+                return{
                   ...state,
                   error: action.payload
               }
-              case userActionTypes.SIGN_OUT_SUCCESS:
-                  return{
+            case userActionTypes.SIGN_OUT_SUCCESS:
+                return{
                       ...state,
                       currentUser: null, 
                       error : null
-                  }
-       
+                  }/*
+            case userActionTypes.PUSH_USER_CART_ITEMS:
+                  return{
+                      ...state,
+                      userCartItems: action.payload
+                  }   */ 
     
         default:
             return state   //we none of the action type matches the current action, we will return the current state 

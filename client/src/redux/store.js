@@ -6,6 +6,7 @@ import rootReducer from "./root-reducer"
 //import thunk from "redux-thunk"
 import createSagaMiddleware from "redux-saga"
 import {rootSaga} from "./root-saga"
+import {composeWithDevTools} from "redux-devtools-extension"
 
 
 const sagaMiddleware =createSagaMiddleware() //can take an obj with some conf. setting, but we dont need
@@ -22,7 +23,9 @@ const middlewares = [logger, sagaMiddleware ] //we might pass only the logger to
 
 
 
-export const store = createStore(rootReducer, applyMiddleware(...middlewares))
+export const store = 
+createStore(rootReducer, composeWithDevTools(applyMiddleware(...middlewares))  
+    )
 
 sagaMiddleware.run(rootSaga)
 //creating the persisted version of our store.

@@ -19,17 +19,22 @@ export const selectCartItems = createSelector(
 )
 
 
+
+
 export const selectCartItemsCount = createSelector(
      [selectCartItems], 
     
-    cartItems => cartItems.reduce((accumulatedQuantity, currentItemQuantity) =>
-    accumulatedQuantity + currentItemQuantity.quantity, 0)
-)
+    ItemsInCart => /* {
+        if (ItemsInCart !== undefined) {
+            return*/ ItemsInCart.reduce((accumulatedQuantity, currentItemQuantity)  =>
+            accumulatedQuantity + currentItemQuantity.quantity, 0)
+       /* }                
+    }*/)
 
 export const selectCartItemsTotalPrice = createSelector(
     [selectCartItems], 
-    cartItems => cartItems.reduce((accumulatedTotalPrice, currentItem) =>
-    accumulatedTotalPrice + (currentItem.price * currentItem.quantity), 0) 
-)
-
-/* */
+    ItemsInCart =>/* {
+        if(ItemsInCart !== undefined) {  
+           return */ItemsInCart.reduce((accumulatedTotalPrice, currentItem) =>
+            accumulatedTotalPrice + (currentItem.price * currentItem.quantity), 0)          
+   /* }}*/)
