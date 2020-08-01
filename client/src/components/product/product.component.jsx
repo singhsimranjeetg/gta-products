@@ -3,10 +3,10 @@ import {connect} from "react-redux"
 import {addItem} from "../../redux/cart/cart.actions"
 import {withRouter} from "react-router-dom"
 
-import "./product.styles.scss"
+import {ProductPageContainer ,ProductContainer, ImageContainer, DetailsContainer, CtaContainer} from "./product.styles"
 
 import CustomButton from "../custom-button/custom-button.component"
-import StarRating from "../star-ratings/star-ratings.component"
+//import StarRating from "../star-ratings/star-ratings.component"
 
 //import CustomButton from "../../components/custom-button/custom-button.component"
 
@@ -18,29 +18,36 @@ const ProductComponent = ({item, addItem, history}) => {
 
    const {imageUrl, price, name} = item   //now we are getting those prop of item obj passed from the preview collection
    
-    console.log((item))
+    //console.log((item))
     return (
-      <div className = "product-page">
-        <div className = "image-container" >
-          <img src= {`${imageUrl}`} alt= {`${name}`} className = "main-image" />
-        </div>
-        <div className = "details-container" >
-          <span className = "name"  >{name}</span>
-          <div className= "star-box">
-            <StarRating ></StarRating>
-          </div> 
-          <span className = "price" > ${price}</span>
-          <CustomButton className = "button-addToCart"
+    <ProductPageContainer>
+      <ProductContainer>
+        <ImageContainer >
+          <img src= {`${imageUrl}`} alt= {`${name}`} />
+        </ImageContainer>
+
+
+        <DetailsContainer>
+          <h2 className = "name">{name}</h2>
+           
+          <span className = "price"> ${price}</span>
+          </DetailsContainer>
+          </ProductContainer>
+
+        <CtaContainer>
+          <CustomButton
           onClick = {() => addItem(item)} >Add to Cart</CustomButton>
-          <CustomButton className = "button-buyNow"
+          <CustomButton className = "bn" 
             onClick = {() => {
             addItem(item)
             history.push("/checkout")
             } } >Buy Now</CustomButton>
-        </div>
+        </CtaContainer>
+    </ProductPageContainer>
+        
         
 
-      </div>
+      
       
 
   

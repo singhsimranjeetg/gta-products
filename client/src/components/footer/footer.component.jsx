@@ -7,19 +7,19 @@ const Footer = () => (
                     <FooterContainer>
                             <OptionsContainer>
                                 <OptionLink>
-                                    <a href="#">company</a>
+                                    <a href="/">company</a>
                                 </OptionLink>
                                 <OptionLink>
-                                    <a href="#">contact</a>
+                                    <a href="/">contact</a>
                                 </OptionLink>
                                 <OptionLink>
-                                    <a href="#">careers</a>
+                                    <a href="/">careers</a>
                                 </OptionLink>
                                 <OptionLink>
-                                    <a href="#">privacy policy</a>
+                                    <a href="/">privacy policy</a>
                                 </OptionLink>
                                 <OptionLink>
-                                    <a href="#">terms & condition</a>
+                                    <a href="/">terms & condition</a>
                                 </OptionLink>
                             </OptionsContainer>
                         <LogoContainer>

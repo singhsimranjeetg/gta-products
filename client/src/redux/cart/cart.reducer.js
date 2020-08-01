@@ -18,7 +18,8 @@ const cartReducer = (state = INITIAL_STATE, action) => {
             case cartActionTypes.ADD_ITEM:
                 return {
                     ...state,
-                    ItemsInCart: addItemsToCart(state.ItemsInCart, action.payload) 
+                    ItemsInCart: addItemsToCart(state.ItemsInCart, action.payload),
+                    hidden: false
                     //cartItems: [...state.cartItems, action.payload]  //we are just passing all prev items in array
                     //and also unshifting the payload in it.
                 }

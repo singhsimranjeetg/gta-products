@@ -23,14 +23,14 @@ const ProductPage = ({fetchCollectionsStartNow,collection, match}) => {
         const item1 = collection.map(item => item.items.find(item2 => item2.id === Number(productid)))
         const item3 = item1.filter(item =>  item !== undefined)
         // const finalItem = item1.map(item => item.find(item2 => item2.id === 24))
-         console.log(item1)
+         //console.log(item1)
          
-        console.log(item3)
+        //console.log(item3)
        //  console.log(finalItem)
-         console.log(collection) 
+         //console.log(collection) 
       
 return(
-    <div className='collection-item'> 
+    <div> 
     
     {
                item3.map(item => (
