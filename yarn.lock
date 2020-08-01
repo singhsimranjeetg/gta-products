@@ -504,10 +504,20 @@ dot-prop@^4.1.0:
   dependencies:
     is-obj "^1.0.0"
 
+dot@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/dot/-/dot-1.1.3.tgz#351360e00a748bce9a1f8f27c00c394a7e4e1e9f"
+  integrity sha512-/nt74Rm+PcfnirXGEdhZleTwGC2LMnuKTeeTIlI82xb5loBBoXNYzr2ezCroPSMtilK8EZIfcNZwOcHN+ib1Lg==
+
 dotenv@7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-7.0.0.tgz#a2be3cd52736673206e8a85fb5210eea29628e7c"
   integrity sha512-M3NhsLbV1i6HuGzBUH8vXrtxOk+tWmzWKDMbAVSUp3Zsjm7ywFeuwrUXhmhQyRK1q5B5GGy7hcXPbj3bnfZg2g==
+
+dotty@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/dotty/-/dotty-0.0.1.tgz#cbe6d45c52abd92c4224c079206e2581d14d038a"
+  integrity sha1-y+bUXFKr2SxCJMB5IG4lgdFNA4o=
 
 duplexer3@^0.1.4:
   version "0.1.4"
@@ -1577,6 +1587,13 @@ prop-types@^15.5.10, prop-types@^15.6.0, prop-types@^15.6.2:
     loose-envify "^1.4.0"
     object-assign "^4.1.1"
     react-is "^16.8.1"
+
+prop@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/prop/-/prop-0.1.1.tgz#e464c772f6cec96e4c3db87b6b7ebb8257676441"
+  integrity sha1-5GTHcvbOyW5MPbh7a367gldnZEE=
+  dependencies:
+    dotty "0.0.1"
 
 proxy-addr@~2.0.5:
   version "2.0.6"
