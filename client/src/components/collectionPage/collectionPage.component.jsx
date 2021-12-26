@@ -19,7 +19,7 @@ class CollectionPage1 extends React.Component {
        
     }
    render(){
-     
+ 
      const {collection} = this.props
      const {title, items} = collection   
      const {searchField} = this.state

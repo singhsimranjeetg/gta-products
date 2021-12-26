@@ -35,6 +35,9 @@ const ContactPage = () => {
 
  const handleChange = event => {
     const {name, value } = event.target
+    console.log('name', name)
+    console.log('value', value)
+    
     setCredentials({...useCredentials, [name] : value})
   }
   

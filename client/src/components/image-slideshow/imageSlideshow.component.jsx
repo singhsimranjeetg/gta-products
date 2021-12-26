@@ -4,7 +4,7 @@ import "./imageSlideshow.styles.scss"
 
 const images = [
   "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
-  "https://www.geburtszeit.com/wp-content/uploads/2018/11/cecbe6fc3cb504ede43c50f38f21f328.jpeg"
+  "https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
   
 
  

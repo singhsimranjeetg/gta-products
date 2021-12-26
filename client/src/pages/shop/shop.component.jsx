@@ -20,7 +20,7 @@ const ShopPage = ({fetchCollectionsStart, match}) =>  {
    useEffect(() => {
       fetchCollectionsStart()
    },[fetchCollectionsStart])
-      //console.log(match)
+      console.log('match',match)
      // throw Error
       return(  
            

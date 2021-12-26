@@ -10,6 +10,8 @@ import {selectDirectorySections} from "../../redux/directory/directory.selector"
        //we have to close the constructor after the state and 
   
     const Directory = ({sections}) => (
+               <>
+               <h1 className="category__heading">Shop By Categories</h1>
                <div className = "directory-menu">
                     {
                         sections.map(({id, ...otherSectionsProps}) => (
@@ -18,6 +20,7 @@ import {selectDirectorySections} from "../../redux/directory/directory.selector"
 
                         }
                 </div>
+                </>
                 
                   
               ) 
