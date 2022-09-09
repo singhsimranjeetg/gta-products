@@ -6,13 +6,6 @@ import {withRouter} from "react-router-dom"
 import {ProductPageContainer ,ProductContainer, ImageContainer, DetailsContainer, CtaContainer} from "./product.styles"
 
 import CustomButton from "../custom-button/custom-button.component"
-//import StarRating from "../star-ratings/star-ratings.component"
-
-//import CustomButton from "../../components/custom-button/custom-button.component"
-
-
-
-
 
 const ProductComponent = ({item, addItem, history}) => {
 

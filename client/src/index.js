@@ -1,27 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App';
-import {BrowserRouter} from "react-router-dom" 
-import {Provider} from "react-redux"
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
-import {PersistGate} from "redux-persist/integration/react"
-import {store, persistor } from "./redux/store"
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './redux/store';
 
-import * as serviceWorker from "./serviceWorker"
+import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(  //browserrouter is a comonent that gives all the routing functionality to the comp in it
-  <Provider store = {store} > 
-  <BrowserRouter>     
-   <PersistGate persistor = {persistor}>
-    <App /> 
-    </PersistGate>
-  </BrowserRouter>
-  </Provider>,
- //provider is the comp that gives the access to the store , where we gonna store our redux, and it has to be the parent of everyone.
-  document.getElementById('root')
+const container = document.getElementById('root');
+const root = createRoot(container); // createRoot(container!) if you use TypeScript
+root.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <PersistGate persistor={persistor}>
+        <App />
+      </PersistGate>
+    </BrowserRouter>
+  </Provider>
 );
-//deleted service worrker code bcz we dont need that.
 
 serviceWorker.register(); //register service worker inside our app.
-
