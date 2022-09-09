@@ -33,7 +33,9 @@ const Header = ({currentUser , hidden,signOutStart}) => (
             </OptionLink>
             {  //checking if there is object in currentUSer prop from app, then show sign out, if null then show sign in
                 currentUser ?(
-                <OptionLink as = "div" onClick = {signOutStart}>SIGN OUT</OptionLink>)
+                // <OptionLink as = "div" onClick = {signOutStart}>SIGN OUT</OptionLink>
+                <OptionLink  to="/account" >Account</OptionLink>
+                )
 
                 :( <OptionLink to = "/signin">SIGN IN</OptionLink>)
             }

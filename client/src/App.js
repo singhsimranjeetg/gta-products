@@ -29,6 +29,8 @@ const Checkout = lazy(() =>
   import('./pages/checkout/checkoutpage/checkout.component')
 );
 
+const AccountPage = lazy(() => import('./pages/account/account.component'));
+
 const SmallApp = lazy(() => import('./pages/test-page/testPage'));
 
 const App = ({ checkUserSession, currentUser }) => {
@@ -54,6 +56,7 @@ const App = ({ checkUserSession, currentUser }) => {
                 currentUser ? <Redirect to='/' /> : <SignInAndSignUpPage />
               }
             />
+            <Route path='/account' component={AccountPage} />
             <Route path='/small-app' component={SmallApp} />
           </Suspense>
         </ErrorBoundary>
