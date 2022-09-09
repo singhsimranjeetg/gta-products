@@ -26,10 +26,6 @@ const CartDropdown = ({cartItems, history, dispatch}) => (   //with mapsatetopro
                 history.push("/checkout")
                dispatch(toggleCartHidden())  
             }} >Go to checkout</CustomButton>
-           
-           
-           
-        
     </div>
 )
  //used mapStatetoprops bcz we need the sate here.
