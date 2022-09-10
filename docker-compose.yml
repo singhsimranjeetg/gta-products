@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  gta-products:
+    container_name: client
+    build: ./
+    command: yarn dockerdev
+    working_dir: /usr/src/gta-products
+    ports:
+      - "3005:3005"
+      - "5000:5000"
