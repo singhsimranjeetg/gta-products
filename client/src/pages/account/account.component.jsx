@@ -12,11 +12,8 @@ import {connect} from "react-redux"
     </div>
  );
 
-
-
 const mapDispatchToProps = dispatch => ({
   signOutStart: () => dispatch(signOutStart()),
- // clearAllCartItems: () => dispatch(clearAllCartItems())
 })
 
 
