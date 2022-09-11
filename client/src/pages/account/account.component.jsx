@@ -1,22 +1,33 @@
-import React from "react"
+import React, { useEffect } from 'react';
+import { signOutStart } from '../../redux/user/users.actions';
+import { getOrdersStart } from '../../redux/account/account.actions';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
-import {signOutStart} from "../../redux/user/users.actions"
-import {connect} from "react-redux"
-
- const AccountPage = ({signOutStart}) => (
-    <div className = "checkout-page">
+const AccountPage = ({ signOutStart, getOrdersStart, currentUser }) => {
+  useEffect(() => {
+    if (currentUser) {
+      getOrdersStart();
+    }
+  }, [getOrdersStart, currentUser]);
+  return (
+    <div className="checkout-page">
       Account Page
       <div onClick={signOutStart}>Sign out</div>
-      <div >Orders</div>
+      <div>Orders</div>
       <div>Profile</div>
     </div>
- );
+  );
+};
 
-const mapDispatchToProps = dispatch => ({
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
+});
+
+const mapDispatchToProps = (dispatch) => ({
   signOutStart: () => dispatch(signOutStart()),
-})
+  getOrdersStart: () => dispatch(getOrdersStart())
+});
 
-
-export default connect(null, mapDispatchToProps)(AccountPage) 
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(AccountPage);
