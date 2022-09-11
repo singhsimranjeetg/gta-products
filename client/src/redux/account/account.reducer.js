@@ -9,13 +9,23 @@ const accountReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case accountActionTypes.GET_ACCOUNT:
       return {
-        ...state, //we are not touching the other prop of initial state
+        ...state,
         accountDetails: action.payload,
       };
-    case accountActionTypes.CREATE_ORDER:
+    case accountActionTypes.CREATE_ORDER_START:
       return {
         ...state,
-        orders: action.payload,
+        orders: [],
+      };
+    case accountActionTypes.CREATE_ORDER_SUCCESS:
+      return {
+        ...state,
+        orders: [],
+      };
+    case accountActionTypes.CREATE_ORDER_FAILED:
+      return {
+        ...state,
+        orders: [],
       };
 
     default:

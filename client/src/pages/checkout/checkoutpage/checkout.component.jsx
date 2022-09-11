@@ -3,17 +3,15 @@ import "./checkout.styles.scss"
 import axios from "axios"
 import {selectCartItems, selectCartItemsTotalPrice} from "../../../redux/cart/cart.selector"
 import {clearEntireCart} from "../../../redux/cart/cart.actions"
+import {createOrderStart} from "../../../redux/account/account.actions"
 import {connect} from "react-redux"
 import CheckoutItem from "../../../components/checkout-item/checkout-item.component";
 import StripeCheckoutButton from "../../../components/stripe-button/stripe-button.component"
 
 
 
- const Checkout = ({cartItems, total, clearEntireCart}) => {
-
+ const Checkout = ({cartItems, total, clearEntireCart, createOrderStart}) => {
   const priceForStripe = total*100
-  // const [orderDetails, setOrderDetails] = useState({})
-
   const onToken = token => {
       axios({
           url : "payment",
@@ -24,8 +22,9 @@ import StripeCheckoutButton from "../../../components/stripe-button/stripe-butto
           }
       }).then( response => {
           console.log('response', response)
-         // setOrderDetails(response.data);
-          clearEntireCart();
+          const orderDetails = response.data
+          createOrderStart(cartItems, orderDetails)
+          clearEntireCart()
           alert("Payment Successful")
       }).catch(error => {
         console.log("Payment error", error) 
@@ -76,6 +75,7 @@ import StripeCheckoutButton from "../../../components/stripe-button/stripe-butto
  
   const mapDispatchToProps = dispatch => ({
     clearEntireCart: () => dispatch(clearEntireCart()),
+    createOrderStart: (cartItems, orderDetails) => dispatch(createOrderStart({cartItems, orderDetails}))
   })
 
 
