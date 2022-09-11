@@ -4,14 +4,14 @@ import { createOrderSuccess, createOrderFailed } from './account.actions';
 import { createNewOrder } from './account.utils';
 
 //EMAIL LOGIN SAGA
-export function* createOrderAsync({ payload: { cartItems, orderDetails } }) {
+export function* createOrderAsync({ payload: { currentUser, cartItems, orderDetails } }) {
   try {
     console.log('hello', cartItems);
-    const orderRef = yield call(createNewOrder, cartItems, orderDetails);
+    const orderRef = yield call(createNewOrder, currentUser, cartItems, orderDetails);
     const orderSnapshot = yield orderRef.get();
     console.log('data', orderSnapshot.data());
     // yield put(SignInSuccess({ id : orderSnapshot.id, ...orderSnapshot.data()}))
-    yield put(createOrderSuccess());
+    yield put(createOrderSuccess({ id: orderSnapshot.id, ...orderSnapshot.data() }));
   } catch (error) {
     yield put(createOrderFailed(error));
   }

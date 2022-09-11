@@ -2,7 +2,7 @@ import { accountActionTypes } from './account.types';
 
 const INITIAL_STATE = {
   accountDetails: null,
-  orders: [],
+  orders: []
 };
 
 const accountReducer = (state = INITIAL_STATE, action) => {
@@ -10,22 +10,22 @@ const accountReducer = (state = INITIAL_STATE, action) => {
     case accountActionTypes.GET_ACCOUNT:
       return {
         ...state,
-        accountDetails: action.payload,
+        accountDetails: action.payload
       };
     case accountActionTypes.CREATE_ORDER_START:
       return {
         ...state,
-        orders: [],
+        orders: []
       };
     case accountActionTypes.CREATE_ORDER_SUCCESS:
       return {
         ...state,
-        orders: [],
+        orders: action.payload
       };
     case accountActionTypes.CREATE_ORDER_FAILED:
       return {
         ...state,
-        orders: [],
+        orders: []
       };
 
     default:

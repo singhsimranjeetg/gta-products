@@ -1,23 +1,24 @@
 import { accountActionTypes } from './account.types';
 
 export const getAccount = () => ({
-  type: accountActionTypes.GET_ACCOUNT,
+  type: accountActionTypes.GET_ACCOUNT
 });
 
-export const createOrderStart = (lineItemsAndOrderDetails) => ({
+export const createOrderStart = (details) => ({
   type: accountActionTypes.CREATE_ORDER_START,
-  payload: lineItemsAndOrderDetails,
+  payload: details
 });
 
-export const createOrderSuccess = (order) => ({
+export const createOrderSuccess = (details) => ({
   type: accountActionTypes.CREATE_ORDER_SUCCESS,
+  payload: details
 });
 
 export const createOrderFailed = (error) => ({
-  type: accountActionTypes.CREATE_ORDER_FAILED,
+  type: accountActionTypes.CREATE_ORDER_FAILED
 });
 
 export const updateOrder = (item) => ({
   type: accountActionTypes.UPDATE_ORDER,
-  payload: item,
+  payload: item
 });

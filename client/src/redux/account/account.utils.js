@@ -1,14 +1,15 @@
 import { firestore } from '../../firebase/firebase.utils';
 
-export const createNewOrder = async (lineItems, orderDetails) => {
+export const createNewOrder = async (user, lineItems, orderDetails) => {
   const orderRef = firestore.collection(`orders`).doc();
 
   const createdAt = new Date();
   try {
     await orderRef.set({
+      user,
       lineItems,
       orderDetails,
-      createdAt,
+      createdAt
     });
   } catch (error) {
     console.log('error creating the order doc', error.message);
