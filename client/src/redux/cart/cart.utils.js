@@ -1,4 +1,4 @@
-import { firestore } from '../../firebase/firebase.utils';
+import { firestore } from '../../utils/firebase/firebase.utils';
 
 export const addItemsToCart = (cartItems, cartItemsToAdd) => {
   //gonaa look in cart items array to see if cartItemstoadd already exists

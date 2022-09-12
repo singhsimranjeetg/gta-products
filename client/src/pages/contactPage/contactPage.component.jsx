@@ -1,91 +1,86 @@
-import React, {useState} from "react"
-import "./contactPage.styles.scss"
-import {ContactPageContainer, FormOptions } from "./contactPage.styles"
-import FormInput from '../../components/form-input/form-input.component'
-import CustomButton from "../../components/custom-button/custom-button.component"
-import {createUserMessages} from "../../firebase/firebase.utils"
-
+import React, { useState } from 'react';
+import './contactPage.styles.scss';
+import { ContactPageContainer, FormOptions } from './contactPage.styles';
+import FormInput from '../../components/form-input/form-input.component';
+import CustomButton from '../../components/custom-button/custom-button.component';
+import { createUserMessages } from '../../utils/firebase/firebase.utils';
 
 const ContactPage = () => {
- 
-  const [useCredentials, setCredentials] = useState({senderName : "",
-  email : "",
-  message : "",
-  responseMessage: ""})
+  const [useCredentials, setCredentials] = useState({ senderName: '', email: '', message: '', responseMessage: '' });
 
-  const {senderName, email, message, responseMessage} = useCredentials
+  const { senderName, email, message, responseMessage } = useCredentials;
 
-
-
- const handleSubmit = async event =>  {
-    event.preventDefault()
-   // console.log("fvsfd")
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // console.log("fvsfd")
     //const {senderName, email, message} = this.state
-   
-   
-    try{
-      await createUserMessages(useCredentials)
-      setCredentials({email: "" , senderName: "", message: "", responseMessage: "Message Sent, Our team will contact you as soon as possible "})
-   
-   
-    }catch(error){
-      console.log(error.message)
+
+    try {
+      await createUserMessages(useCredentials);
+      setCredentials({
+        email: '',
+        senderName: '',
+        message: '',
+        responseMessage: 'Message Sent, Our team will contact you as soon as possible '
+      });
+    } catch (error) {
+      console.log(error.message);
     }
-  }
+  };
 
- const handleChange = event => {
-    const {name, value } = event.target
-    console.log('name', name)
-    console.log('value', value)
-    
-    setCredentials({...useCredentials, [name] : value})
-  }
-  
- 
-    return(
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    console.log('name', name);
+    console.log('value', value);
+
+    setCredentials({ ...useCredentials, [name]: value });
+  };
+
+  return (
     <ContactPageContainer>
-        <h1>Contact Us</h1>
-       <FormOptions onSubmit = {handleSubmit}>
+      <h1>Contact Us</h1>
+      <FormOptions onSubmit={handleSubmit}>
+        <FormInput
+          type="text"
+          name="senderName"
+          value={senderName}
+          autoComplete="off"
+          handleChange={handleChange}
+          label="Name"
+          required
+        />
 
-                    <FormInput type="text"
-                     name = "senderName" 
-                     value = {senderName} 
-                     autoComplete = "off"
-                     handleChange = {handleChange}
-                     label = "Name"
-                      required />
+        <FormInput
+          name="email"
+          value={email}
+          type="email"
+          handleChange={handleChange}
+          autoComplete="on"
+          label="Email"
+          required
+        />
 
-                    <FormInput
-                     name = "email"
-                     value ={email} 
-                     type="email" 
-                     handleChange = {handleChange}
-                     autoComplete = "on"
-                     label = 'Email'
-                      required />
-                    
+        <FormInput
+          type="text"
+          name="message"
+          value={message}
+          autoComplete="off"
+          handleChange={handleChange}
+          label="Message"
+          required
+        />
 
-                    <FormInput type="text"
-                     name = "message" 
-                     value = {message} 
-                     autoComplete = "off"
-                     handleChange = {handleChange}
-                     label = "Message"
-                      required />
+        <h3>{responseMessage}</h3>
 
-                    <h3>{responseMessage}</h3>
-
-                    <CustomButton  type="submit" >SEND
-                        </CustomButton>
-                        </FormOptions>
+        <CustomButton type="submit">SEND</CustomButton>
+      </FormOptions>
     </ContactPageContainer>
-  
+  );
+};
 
-    )}
+export default ContactPage;
 
-export default ContactPage
-
-  /*
+/*
     <div style = {{display: "hidden"}} className = "contact-page">
         <img style = {{width: "380px", height: "300px"}} src="https://i.ibb.co/34RXBHP/ceo.jpg" alt="CEO"/><br/>
         <span style = {{color: "#55f562", fontSize: "20px", fontWeight: "bold"}} className = "title">Simranjeet Singh, President & CEO</span><br/><br/>

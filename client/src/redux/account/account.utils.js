@@ -1,4 +1,4 @@
-import { firestore } from '../../firebase/firebase.utils';
+import { firestore } from '../../utils/firebase/firebase.utils';
 
 export const createNewOrder = async (currentUser, lineItems, orderDetails) => {
   const orderRef = firestore.collection(`orders`).doc();
