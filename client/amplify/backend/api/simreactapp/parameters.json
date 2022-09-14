@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "simreactapp",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authsimreactapp677e590d",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

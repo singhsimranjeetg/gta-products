@@ -10,6 +10,22 @@
       "StackName": "amplify-simreactapp-dev-144215",
       "StackId": "arn:aws:cloudformation:us-east-2:701293336081:stack/amplify-simreactapp-dev-144215/f594aaf0-345c-11ed-b880-06630515b1da",
       "AmplifyAppId": "d3nk2b7h9mny7z"
+    },
+    "categories": {
+      "auth": {
+        "simreactapp677e590d": {},
+        "true": {}
+      },
+      "function": {
+        "processPayment": {
+          "deploymentBucketName": "amplify-simreactapp-dev-144215-deployment",
+          "s3Key": "amplify-builds/processPayment-787078615966414f5634-build.zip"
+        },
+        "createOrder": {
+          "deploymentBucketName": "amplify-simreactapp-dev-144215-deployment",
+          "s3Key": "amplify-builds/createOrder-6a39585a443572317277-build.zip"
+        }
+      }
     }
   }
 }

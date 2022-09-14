@@ -1,0 +1,16 @@
+{
+  "resourceName": "products",
+  "policyUUID": "4fafd09b",
+  "bucketName": "simreactapp2f133db1ef534608980a8c9b0adce134",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
