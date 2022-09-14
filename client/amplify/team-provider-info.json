@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-simreactapp-dev-144215-authRole",
+      "UnauthRoleArn": "arn:aws:iam::701293336081:role/amplify-simreactapp-dev-144215-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::701293336081:role/amplify-simreactapp-dev-144215-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-simreactapp-dev-144215-deployment",
+      "UnauthRoleName": "amplify-simreactapp-dev-144215-unauthRole",
+      "StackName": "amplify-simreactapp-dev-144215",
+      "StackId": "arn:aws:cloudformation:us-east-2:701293336081:stack/amplify-simreactapp-dev-144215/f594aaf0-345c-11ed-b880-06630515b1da",
+      "AmplifyAppId": "d3nk2b7h9mny7z"
+    }
+  }
+}
