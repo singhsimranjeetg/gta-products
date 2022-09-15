@@ -48,13 +48,13 @@ export const getProduct = /* GraphQL */ `
     }
   }
 `;
-export const listProducts = /* GraphQL */ `
-  query ListProducts(
-    $filter: ModelProductFilterInput
+export const listBooks = /* GraphQL */ `
+  query ListBooks(
+    $filter: ModelBookFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listBooks(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         title

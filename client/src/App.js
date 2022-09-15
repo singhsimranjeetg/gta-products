@@ -1,6 +1,6 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import Amplify from 'aws-amplify';
-
+import awsExports from './aws-exports';
 import { GlobalStyle } from './global.styles';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
@@ -26,7 +26,6 @@ const AccountPage = lazy(() => import('./pages/account/account.component'));
 
 const SmallApp = lazy(() => import('./pages/test-page/testPage'));
 
-import awsExports from './aws-exports';
 Amplify.configure(awsExports);
 
 const App = ({ checkUserSession, currentUser }) => {

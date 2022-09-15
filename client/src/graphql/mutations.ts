@@ -7,12 +7,12 @@ export const processOrder = /* GraphQL */ `
     processOrder(input: $input)
   }
 `;
-export const createProduct = /* GraphQL */ `
-  mutation CreateProduct(
-    $input: CreateProductInput!
-    $condition: ModelProductConditionInput
+export const createBook = /* GraphQL */ `
+  mutation CreateBook(
+    $input: CreateBookInput!
+    $condition: ModelBookConditionInput
   ) {
-    createProduct(input: $input, condition: $condition) {
+    createBook(input: $input, condition: $condition) {
       id
       title
       description
@@ -23,12 +23,12 @@ export const createProduct = /* GraphQL */ `
     }
   }
 `;
-export const updateProduct = /* GraphQL */ `
-  mutation UpdateProduct(
-    $input: UpdateProductInput!
-    $condition: ModelProductConditionInput
+export const updateBook = /* GraphQL */ `
+  mutation UpdateBook(
+    $input: UpdateBookInput!
+    $condition: ModelBookConditionInput
   ) {
-    updateProduct(input: $input, condition: $condition) {
+    updateBook(input: $input, condition: $condition) {
       id
       title
       description
@@ -39,12 +39,12 @@ export const updateProduct = /* GraphQL */ `
     }
   }
 `;
-export const deleteProduct = /* GraphQL */ `
-  mutation DeleteProduct(
-    $input: DeleteProductInput!
-    $condition: ModelProductConditionInput
+export const deleteBook = /* GraphQL */ `
+  mutation DeleteBook(
+    $input: DeleteBookInput!
+    $condition: ModelBookConditionInput
   ) {
-    deleteProduct(input: $input, condition: $condition) {
+    deleteBook(input: $input, condition: $condition) {
       id
       title
       description
