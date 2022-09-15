@@ -1,4 +1,4 @@
-type Product
+type Book
   @model(subscriptions: null)
   @auth(
     rules: [
@@ -15,26 +15,28 @@ type Product
   description: String
   image: String
   price: Float
-  #  orders: [BookOrder] @connection(keyName: "byBook", fields: ["id"])
+  orders: [BookOrder] @hasMany(indexName: "byBook", fields: ["id"])
 }
 
-# type BookOrder
-#   @model(queries: null, subscriptions: null)
-#   @key(name: "byBook", fields: ["book_id", "order_id"])
-#   @key(name: "byOrder", fields: ["order_id", "book_id"])
-#   @auth(
-#     rules: [
-#       # allow admins to create bookorders for customers by using customer email in lambda
-#       { allow: owner, identityClaim: "email", ownerField: "customer" }
-#       { allow: groups, groups: ["Admin"] }
-#     ]
-#   ) {
-#   id: ID!
-#   book_id: ID!
-#   order_id: ID!
-#   book: Book @connection(fields: ["book_id"])
-#   order: Order @connection(fields: ["order_id"])
-# }
+type BookOrder
+  @model(queries: null, subscriptions: null)
+  # @key(name: "byBook", fields: ["book_id", "order_id"])
+  # @key(name: "byOrder", fields: ["order_id", "book_id"])
+  @auth(
+    rules: [
+      # allow admins to create bookorders for customers by using customer email in lambda
+      { allow: owner, identityClaim: "email", ownerField: "customer" }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  book_id: ID!
+  order_id: ID!
+  # book: Book @connection(fields: ["book_id"])
+  # order: Order @connection(fields: ["order_id"])
+  order: ID! @index(name: "byOrder")
+  book: ID! @index(name: "byBook")
+}
 
 type Order
   @model(subscriptions: null)
@@ -51,7 +53,7 @@ type Order
   user: String!
   date: String
   total: Float
-  #  books: [BookOrder] @connection(keyName: "byOrder", fields: ["id"])
+  books: [BookOrder] @hasMany(indexName: "byOrder", fields: ["id"])
 }
 
 enum OrderStatus {

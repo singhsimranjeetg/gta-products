@@ -19,11 +19,11 @@
       "function": {
         "processPayment": {
           "deploymentBucketName": "amplify-simreactapp-dev-144215-deployment",
-          "s3Key": "amplify-builds/processPayment-787078615966414f5634-build.zip"
+          "s3Key": "amplify-builds/processPayment-6f2b45672b5a65395975-build.zip"
         },
         "createOrder": {
           "deploymentBucketName": "amplify-simreactapp-dev-144215-deployment",
-          "s3Key": "amplify-builds/createOrder-6a39585a443572317277-build.zip"
+          "s3Key": "amplify-builds/createOrder-7068734f454472585a59-build.zip"
         }
       }
     }
